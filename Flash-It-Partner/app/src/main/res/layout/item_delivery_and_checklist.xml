@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/singleDeliveryLayout">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="20dp"
+            android:src="@drawable/truck_52"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/truckIcon"/>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Gucci item"
+            android:textSize="8pt"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:id="@+id/deliveryName"
+            android:layout_alignTop="@+id/truckIcon"
+
+            android:layout_toRightOf="@+id/truckIcon"
+            android:layout_toLeftOf="@+id/relativeDistance"
+            android:layout_toEndOf="@+id/truckIcon"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativeDistance"
+            android:text="(6.4 km)"
+            android:layout_alignTop="@+id/truckIcon"
+            android:layout_alignBottom="@+id/truckIcon"
+            android:gravity="center_vertical"
+            android:textSize="8pt"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/dropDownChecklist"
+            android:layout_toStartOf="@+id/dropDownChecklist" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dropDownChecklist"
+            android:layout_alignTop="@+id/truckIcon"
+            android:textSize="6pt"
+            android:layout_alignBottom="@+id/truckIcon"
+            android:text="\u25BC"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checklistItems"
+        android:orientation="vertical"
+        android:layout_below="@+id/singleDeliveryLayout"></LinearLayout>
+
+
+
+</RelativeLayout>

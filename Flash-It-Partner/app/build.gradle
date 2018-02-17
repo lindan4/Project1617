@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "24.0.0 rc3"
+    useLibrary  'org.apache.http.legacy'
+
+    defaultConfig {
+        applicationId "com.flashitdelivery.flash_it_partner"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            buildToolsVersion "24.0.1"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+    defaultConfig {
+        multiDexEnabled true
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:23.0.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.auth0.android:lock:1.14.+'
+    compile 'com.google.android.gms:play-services-gcm:9.2.0'
+    compile 'com.google.maps:google-maps-services:0.1.15'
+    compile 'com.google.maps.android:android-maps-utils:0.4+'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.google.firebase:firebase-core:9.2.0'
+    compile 'com.google.firebase:firebase-messaging:9.2.0'
+    compile 'com.google.android.gms:play-services:9.2.0'
+    compile 'com.akexorcist:googledirectionlibrary:1.0.4'
+    compile 'com.github.nirhart:parallaxscroll:1.0'
+    compile 'com.afollestad.material-dialogs:core:0.8.6.1'
+    compile 'com.afollestad.material-dialogs:commons:0.8.6.1'
+    compile 'org.jsoup:jsoup:1.9.2'
+    compile 'com.dlazaro66.qrcodereaderview:qrcodereaderview:1.0.0'
+    compile 'com.github.dexafree:MaterialList:v3.2.2'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+    compile(group: 'com.flashitdelivery.lib', name: 'core', version: '1.0.2', ext: 'aar')
+}
+
+apply plugin: 'com.google.gms.google-services'

@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "76496908875",
+    "firebase_url": "https://flash-it-e1868.firebaseio.com",
+    "project_id": "flash-it-e1868",
+    "storage_bucket": "flash-it-e1868.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76496908875:android:67b38771351f906e",
+        "android_client_info": {
+          "package_name": "com.flashitdelivery.flash_it"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76496908875-6n9jolm257ssve0me3jsfoe8674shs9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGOOyfKIrZcV0ZPzNqm_zWhOFsthH_Hl4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76496908875:android:591b187a3a8e850a",
+        "android_client_info": {
+          "package_name": "com.flashitdelivery.flash_it_partner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76496908875-6n9jolm257ssve0me3jsfoe8674shs9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGOOyfKIrZcV0ZPzNqm_zWhOFsthH_Hl4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

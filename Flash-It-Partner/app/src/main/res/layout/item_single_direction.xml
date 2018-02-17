@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:id="@+id/upperBound"
+        android:layout_above="@+id/directionText"/>
+    <TextView
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/upperBound"
+        android:layout_alignBottom="@+id/lowerBound"
+        android:layout_marginLeft="15dp"
+        android:background="@color/flashItPartner_purple"
+        android:id="@+id/textView" />
+
+    <TextView
+        android:layout_width="15dp"
+        android:layout_height="5dp"
+        android:background="@color/flashItPartner_purple"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:id="@+id/textView2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/directionText"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/flashItPartner_purple"
+        android:text="Head south onto Aldergrove Dr. Then turn right."
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:id="@+id/lowerBound"
+        android:layout_below="@+id/directionText"/>
+
+</RelativeLayout>

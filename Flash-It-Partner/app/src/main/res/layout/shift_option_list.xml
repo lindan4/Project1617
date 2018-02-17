@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:gravity="center"
+    android:layout_height="80dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="7dp" />
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneBlock"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/phoneIcon"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/phone_52"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/flashItPartner_purple"
+                    android:text="@string/call"
+                    android:layout_below="@+id/phoneIcon"
+                    android:id="@+id/phoneText"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/checklistBlock"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/checklistIcon"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/checklist_48"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/flashItPartner_purple"
+                    android:text="@string/preview_checklist"
+                    android:layout_below="@+id/checklistIcon"
+                    android:id="@+id/checklistText"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/cancelBlock"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/cancelIcon"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/cancel_64"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/flashItPartner_purple"
+                    android:text="@string/cancel"
+                    android:layout_below="@+id/cancelIcon"
+                    android:id="@+id/cancelText"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/returnBlock"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/returnIcon"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/return_52"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/flashItPartner_purple"
+                    android:text="@string/back"
+                    android:layout_below="@+id/returnIcon"
+                    android:id="@+id/returnText"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="7dp" />
+
+</LinearLayout>

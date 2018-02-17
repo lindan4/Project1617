@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Flash-It-Partner</string>
+    <string name="auth0_client_id">iYoER9BjZdrjeOhRmwov6o3ppirgsETj</string>
+    <string name="auth0_domain">flashit.auth0.com</string>
+
+
+    <string name="user_id_prefs">USER_ID_PREFS</string>
+    <string name="user_id">USER_ID</string>
+
+    <!-- Strings for main activity -->
+    <string name="nearby_deliveries_header">NEARBY DELIVERIES</string>
+
+    <string name="reassigning_deliveries">Reassigning deliveries</string>
+    <string name="cannot_refresh">Cannot refresh nearby deliveries during your shift</string>
+
+    <string name="enable_location">Enable location services to use this application</string>
+    <string name="enable_camera">Enable camera to use QR code functionality in this application</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="start_shift">START SHIFT</string>
+
+    <string name="loading_upper">LOADING...</string>
+    <string name="loading_lower">Loading...</string>
+    <string name="pending">PENDING</string>
+
+    <!-- Verify dialog -->
+    <string name="verify_delivery">VERIFY DELIVERY</string>
+    <string name="no_camera">NO CAMERA?</string>
+    <string name="scan_qr_instead">Scan QR code instead</string>
+    <string name="type_code">Type code instead</string>
+    <string name="verify">Verify</string>
+
+
+    <!-- driver main options -->
+    <string name="my_profile">MY PROFILE</string>
+    <string name="log_out">LOG OUT</string>
+
+    <!-- driver shift options -->
+    <string name="call">Call</string>
+    <string name="preview_checklist">Checklist</string>
+    <string name="cancel">Cancel</string>
+    <string name="back">Return</string>
+
+    <!-- driver profile strings -->
+    <string name="driver_stats">Driver Statistics</string>
+    <string name="amt_deliveries"># deliveries</string>
+    <string name="current_paycheque">Current Pay Cheque: </string>
+    <string name="driver_history">History</string>
+    <string name="cash_out">Cash out</string>
+
+
+
+
+</resources>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:name="com.google.android.gms.maps.SupportMapView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/homeLayout"
+    tools:context=".activity.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center_vertical"
+        android:background="@color/flashItPartner_purple"
+        android:id="@+id/driverUpperIcons">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/refreshButton"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/refresh_64"
+            android:layout_marginLeft="9dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:id="@+id/currentTaskText"
+            android:text=""/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/settings_filled_50"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="9dp"
+            android:layout_marginEnd="9dp" />
+
+    </RelativeLayout>
+
+    <com.google.android.gms.maps.MapView
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:layout_below="@+id/driverUpperIcons"
+        android:layout_above="@+id/directionsAndDestination"
+        android:apiKey="@string/google_maps_key"
+        android:id="@+id/googleMapObject"></com.google.android.gms.maps.MapView>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/startShiftButton"
+        android:background="@color/flashItPartner_purple"
+        android:textColor="@android:color/white"
+        android:text="@string/start_shift"
+        android:layout_alignBottom="@+id/googleMapObject"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/verifyDeliveryButton"
+        android:background="@color/flashItPartner_purple"
+        android:textColor="@android:color/white"
+        android:text="@string/verify_delivery"
+        android:clickable="false"
+        android:layout_alignBottom="@+id/googleMapObject"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/directionsAndDestination">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:id="@+id/destinationBox"
+            android:background="@color/dull_grey">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/deliveryTruckInfo"
+                android:src="@drawable/dededeinfostroketruck_52"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/destinationAddress"
+                android:text="Destination: 123 Gucci St, Aldergrove, BC"
+                android:gravity="center"
+                android:textColor="@color/flashItPartner_purple"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/deliveryTruckInfo"
+                android:layout_toEndOf="@+id/deliveryTruckInfo" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:id="@+id/mapScrollViewWrapper">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/mapDirections"
+                android:orientation="vertical">
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:animateLayoutChanges="true"
+        android:orientation="horizontal"
+        android:id="@+id/driverMainOptions"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="9pt"
+            android:textColor="@android:color/white"
+            android:background="@color/flashItPartner_purple"
+            android:id="@+id/profileButton"
+            android:text="@string/my_profile"/>
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:background="@color/flashItPartner_purple"
+            android:textColor="@android:color/white"
+            android:textSize="9pt"
+            android:text="@string/log_out"
+            android:id="@+id/logOutButton"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:id="@+id/profileNameAndPicture"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/profilePicture"
+            android:src="@drawable/gender_neutral_user_filled_100"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/driverUserName"
+            android:text="lindan"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/flashItPartner_purple"
+            android:textSize="14pt"
+            android:layout_marginLeft="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/driver_stats"
+        android:id="@+id/driverStatText"
+        android:textSize="10pt"
+        android:textColor="@color/flashItPartner_purple"
+        android:layout_below="@+id/profileNameAndPicture"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/amt_deliveries"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/flashItPartner_purple"
+        android:textSize="5pt"
+        android:layout_below="@+id/driverStatText"
+        android:layout_alignLeft="@+id/driverStatsGraph"
+        android:layout_alignStart="@+id/driverStatsGraph" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_width="300dp"
+        android:layout_height="170dp"
+        android:id="@+id/driverStatsGraph"
+        android:layout_below="@+id/profileNameAndPicture"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/paychequeInfo"
+        android:layout_alignLeft="@+id/driverStatsGraph"
+        android:layout_alignRight="@+id/driverStatsGraph"
+        android:layout_below="@+id/driverStatsGraph">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/currentPayText"
+            android:textSize="9pt"
+            android:textColor="@color/flashItPartner_purple"
+            android:text="@string/current_paycheque"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/paychequeAmount"
+            android:text="$450"
+            android:textColor="@android:color/black"
+            android:textSize="9pt"
+            android:layout_below="@+id/currentPayText"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_alignLeft="@+id/paychequeInfo"
+        android:layout_alignRight="@+id/paychequeInfo"
+        android:id="@+id/profilePageOptions"
+        android:layout_below="@+id/paychequeInfo"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/driverHistoryButton"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/document_52"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/driver_history"
+                android:textColor="@color/flashItPartner_purple"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/driverCashOut"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/coins_52"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cash_out"
+                android:textColor="@color/flashItPartner_purple"/>
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>
