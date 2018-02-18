@@ -335,6 +335,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         final ArrayList<String> dummyChecklistTwo = new ArrayList<String>();
         ArrayList<String> dummyChecklistThree = new ArrayList<>();
 
+        Toast.makeText(this, "WHY?!!!", Toast.LENGTH_LONG);
 
         final DummyDelivery deliveryOne = new DummyDelivery("HTC 10", "Awesome item", "yonnie", "lindan", "2 Fenton Road, Markham, ON" , "40 Audia Court, Concord, ON ", dummyChecklistOne);
         final DummyDelivery deliveryTwo = new DummyDelivery("Prada", "Awesome item", "yonnie", "lindan", "196 Aldergrove Dr, Markham, ON", "676 Westburne Dr, Vaughan, ON", dummyChecklistOne);
@@ -606,7 +607,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private LatLng convertAddressToCoordinates(String address) throws Exception
     {
-        GeoApiContext geoApiContext = new GeoApiContext().setApiKey(MainActivity.this.getResources().getString(R.string.google_direction_key));
+        GeoApiContext geoApiContext = new GeoApiContext().setApiKey(MainActivity.this.getResources().getString(R.string.google_geocoding_key));
         GeocodingResult[] geocodingResults = GeocodingApi.geocode(geoApiContext, address).await();
         while (geocodingResults.length == 0)
         {

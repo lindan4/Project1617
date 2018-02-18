@@ -52,9 +52,9 @@ public class SplashActivity extends AppCompatActivity {
 
         broadcastManager = LocalBroadcastManager.getInstance(this);
         broadcastManager.registerReceiver(authenticationReceiver, new IntentFilter(Lock.AUTHENTICATION_ACTION));
-        Intent lockIntent = new Intent(this, LockActivity.class);
+        Intent MainIntent = new Intent(this, MainActivity.class);
 
-        startActivity(lockIntent);
+        startActivity(MainIntent);
         forceLocationUsage();
     }
 
