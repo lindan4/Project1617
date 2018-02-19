@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+
+    <com.dexafree.materialList.view.MaterialListView
+        android:id="@+id/checkList"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"></com.dexafree.materialList.view.MaterialListView>
+
+    <RelativeLayout
+        android:id="@+id/checklistInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/checkList"
+        android:layout_alignLeft="@+id/checkList"
+        android:layout_alignRight="@+id/checkList"
+        android:layout_alignStart="@+id/checkList"
+        android:layout_below="@+id/checkList">
+
+        <TextView
+            android:id="@+id/plusSign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/inputCheckItemDesc"
+            android:layout_alignTop="@+id/inputCheckItemDesc"
+            android:text="@string/plus_sign"
+            android:textColor="@android:color/black"
+            android:textSize="12.5pt" />
+
+        <EditText
+            android:id="@+id/inputCheckItemDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/plusSign"
+            android:textSize="7pt"
+            android:maxLines="1"/>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

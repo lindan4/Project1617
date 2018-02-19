@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="colorPrimary">@color/windowBackground</color>
+    <color name="colorPrimaryDark">#9b0f00</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="flashIt_red">#C41301</color>
+    <color name="flashIt_white">#FFFFFF</color>
+    <color name="flashIt_blue">#33A1DE</color>
+
+    <color name="blackOlive">#39393F</color>
+    <color name="orange">#FEC500</color>
+    <color name="bg_tag_default">#7cd167</color>
+
+    <color name="black">#000000</color>
+    <color name="checkmark_green">#3D8B37</color>
+    <color name="flashIt_grey">#9e9e9e</color>
+    <color name="flashIt_light_grey">#f2f2f2</color>
+    <color name="flashIt_home_list_background">#dadada</color>
+
+    <color name="webviewtoolbar">#e0e0e0</color>
+
+
+    <color name="item_object_overview_background">#8C000000</color>
+
+    <color name="calendar_selected_day_bg">@color/flashIt_red</color>
+
+    <color name="calendar_default_disabled_background">#D7D9DB</color>
+    <color name="calendar_default_disabled_text">#9CA3A9</color>
+
+</resources>

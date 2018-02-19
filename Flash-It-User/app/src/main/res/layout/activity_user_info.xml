@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/externalUser"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/externalUserInfoPic"
+            android:src="@drawable/ic_user"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:civ_border_color="@color/flashIt_red"
+            app:civ_border_width="2.5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/generic_username"
+            android:id="@+id/externalUsername"
+            android:textSize="10pt"
+            android:textColor="@color/flashIt_red"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/externalUser"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:id="@+id/userItemInfo">
+
+        <belka.us.androidtoggleswitch.widgets.ToggleSwitch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleItemStatusUserInfo"
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            custom:textToggleLeft="@string/selling_text"
+            custom:textToggleRight="@string/sold_text"
+            custom:activeBgColor="@color/flashIt_red"
+            custom:toggleWidth="140dp">
+
+        </belka.us.androidtoggleswitch.widgets.ToggleSwitch>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="205dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/deliveryListUserInfoWrapper">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:id="@+id/sellingListInfoWrapper">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/sellingListUserInfo">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/noSaleText"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/no_selling_items"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:orientation="vertical"
+                        android:id="@+id/userSaleList"></LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:id="@+id/soldListUserInfoWrapper">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/soldListUserInfo">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/noSoldText"
+                        android:text="@string/no_sold_items"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:orientation="vertical"
+                        android:id="@+id/userSoldList"></LinearLayout>
+                </LinearLayout>
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

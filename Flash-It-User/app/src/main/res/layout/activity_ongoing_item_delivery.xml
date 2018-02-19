@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="12dp"
+        android:id="@+id/ongoingItemBase">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:src="@drawable/flashit_red_box"
+            android:layout_height="110dp"
+            android:id="@+id/ongoingItemImage"/>
+
+        <RelativeLayout
+            android:layout_width="235dp"
+            android:layout_toRightOf="@+id/ongoingItemImage"
+            android:layout_alignTop="@+id/ongoingItemImage"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/ongoingItemImage">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:id="@+id/ongoingItemName"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:textSize="9.2pt"
+                android:textColor="@android:color/black"
+                android:text="@string/gucci_text"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/ongoingItemName"
+                android:id="@+id/ongoingItemPrice"
+                android:text="$24.99"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

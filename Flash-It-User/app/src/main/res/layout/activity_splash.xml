@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/flashItLogo"
+        android:src="@drawable/logo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/flashItSlogan"
+        android:layout_alignBottom="@+id/flashItLogo"
+        android:layout_centerHorizontal="true"
+        android:textSize="12pt"
+        android:text="@string/slogan"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:visibility="gone"
+        android:id="@+id/permissionsPromptLayout"
+        android:layout_alignLeft="@+id/flashItLogo"
+        android:layout_alignRight="@+id/flashItLogo"
+        android:layout_below="@+id/flashItLogo"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/permissionsPrompt"
+            android:textColor="@android:color/black"
+            android:layout_centerInParent="true"
+            android:textSize="7.5pt"
+            android:gravity="center"
+            android:text="@string/enable_services"
+            android:layout_marginTop="70dp"/>
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/flashIt_grey"
+            android:id="@+id/exitOnSplash"
+            android:layout_marginTop="20dp"
+            android:text="@string/exit_text"/>
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/exitOnSplash"
+            android:layout_alignBottom="@+id/exitOnSplash"
+            android:background="@color/flashIt_red"
+            android:text="@string/proceed_text"
+            android:id="@+id/proceedButton"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

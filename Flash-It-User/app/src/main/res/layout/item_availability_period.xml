@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/from">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/flashitrectangle"/>
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginLeft="5.6dp"
+            android:id="@+id/calendarFromIcon"
+            android:layout_centerVertical="true"
+            android:src="@drawable/calendar_filled_100"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/available_from"
+            android:layout_marginLeft="5dp"
+            android:textSize="6pt"
+            android:layout_alignTop="@+id/calendarFromIcon"
+            android:layout_toRightOf="@+id/calendarFromIcon"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/to">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/flashitrectangle"/>
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginLeft="5.6dp"
+            android:id="@+id/calendarToIcon"
+            android:layout_centerVertical="true"
+            android:src="@drawable/calendar_filled_100"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/available_to"
+            android:layout_marginLeft="5dp"
+            android:textSize="6pt"
+            android:layout_alignTop="@+id/calendarToIcon"
+            android:layout_toRightOf="@+id/calendarToIcon"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

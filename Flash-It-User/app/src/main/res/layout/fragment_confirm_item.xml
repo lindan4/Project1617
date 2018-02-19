@@ -1,0 +1,33 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.flashitdelivery.flash_it.fragment.steppersview.ConfirmItemFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_photo_height"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="@dimen/item_photo_height"
+            android:layout_height="@dimen/item_photo_width"
+            android:src="@drawable/flashit_red_box"
+            android:id="@+id/itemPicture"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_photo_height"
+            android:layout_marginLeft="4dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/itemName"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:id="@+id/itemDesc"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

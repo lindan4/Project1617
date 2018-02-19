@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="100dp"
+    android:background="@android:color/transparent"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginLeft="7dp"
+        android:id="@+id/notificationImage"
+        android:src="@drawable/flashit_red_box"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/notificationTextContent"
+        android:layout_alignTop="@+id/notificationImage"
+        android:layout_alignBottom="@+id/notificationImage"
+        android:layout_toRightOf="@+id/notificationImage"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/notificationText"
+            android:textColor="@android:color/black"
+            android:text=""
+            android:maxLines="3"
+            android:ellipsize="end" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/notificationTypeAndStamp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/checked_checkbox_96"
+                android:layout_alignParentRight="true"
+                android:id="@+id/notificationTypeImage"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Sept 29, 2016 6:09 PM"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="2dp"
+                android:gravity="center_vertical"
+                android:id="@+id/notificationTimestamp"/>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

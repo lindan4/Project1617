@@ -1,0 +1,269 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    tools:context="com.flashitdelivery.flash_it.fragment.EnlistFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:id="@+id/enlistOptions"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:gravity="center"
+            android:id="@+id/publicOption"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/publicOptionSelection"
+                android:src="@drawable/enlistoptionselect_1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/public_option"
+                android:id="@+id/publicOptionText"
+                android:textColor="@android:color/white"
+                android:textSize="5pt"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:gravity="center"
+            android:id="@+id/privateOption"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:rotation="180"
+                android:id="@+id/privateOptionSelection"
+                android:src="@drawable/enlistoptionunselect_1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/private_option"
+                android:textColor="@color/flashIt_red"
+                android:textSize="5pt"
+                android:id="@+id/privateOptionText"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/enlistOptions"
+        android:layout_alignRight="@+id/enlistOptions"
+        android:text="@string/public_option_desc"
+        android:id="@+id/optionDescription"
+        android:layout_below="@+id/enlistOptions"/>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/enlistForm"
+        android:visibility="visible"
+        android:layout_marginTop="4dp"
+        android:layout_below="@+id/optionDescription"
+        android:layout_alignLeft="@+id/enlistOptions"
+        android:layout_alignRight="@+id/enlistOptions">
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/itemPicture"
+                android:src="@drawable/compact_camera_gray_100"/>
+
+
+
+            <belka.us.androidtoggleswitch.widgets.ToggleSwitch
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/linkAd"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_below="@+id/linkAdText"
+                custom:textToggleLeft="@string/toggle_off"
+                custom:textToggleRight="@string/toggle_on"
+                custom:activeBgColor="@color/flashIt_red"/>
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/find_your_ad"
+                 android:id="@+id/linkAdText"
+                 android:layout_marginTop="33dp"
+                 android:layout_alignLeft="@+id/linkAd"
+                 android:layout_alignStart="@+id/linkAd" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="6pt"
+                android:visibility="gone"
+                android:id="@+id/viewAd"
+                android:layout_below="@+id/linkAd"
+                android:text="@string/view_ad"
+                android:textColor="@color/flashIt_red"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemBaseFields"
+            android:visibility="visible"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/itemPicture">
+
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:id="@+id/itemName">
+
+
+                <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:hint="@string/item_name"
+                    android:id="@+id/itemNameInput"
+                    android:inputType="textCapSentences"
+                    android:textSize="6pt"
+                    android:maxLines="1"
+                    android:background="@drawable/rectangle_red_border_single_round_corner_top_left"
+                    android:nextFocusDown="@+id/itemPriceInput"
+                    android:nextFocusForward="@+id/itemPriceInput"
+                    android:nextFocusRight="@+id/itemPriceInput"
+                    android:scrollHorizontally="true"
+                    android:gravity="center"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:id="@+id/itemPrice"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/itemName"
+                android:layout_alignRight="@+id/itemDescInput">
+
+                <com.blackcat.currencyedittext.CurrencyEditText
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:hint="@string/item_price"
+                    android:textSize="6pt"
+                    android:maxLines="1"
+                    android:id="@+id/itemPriceInput"
+                    android:background="@drawable/rectangle_red_border_single_round_corner_top_right"
+                    android:nextFocusDown="@+id/itemDescInput"
+                    android:scrollHorizontally="true"
+                    android:gravity="center" />
+
+            </RelativeLayout>
+
+                <EditText
+                    android:layout_below="@id/itemName"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:hint="@string/item_description"
+                    android:background="@drawable/rectangle_red_border"
+                    android:id="@+id/itemDescInput"
+                    android:maxLines="1"
+                    android:inputType="textCapSentences|textAutoCorrect"
+                    android:nextFocusDown="@+id/tag_group"
+                    android:nextFocusForward="@+id/tag_group"
+                    android:nextFocusRight="@+id/tag_group"
+                    android:textSize="6pt"
+                    android:gravity="center"/>
+
+
+                <RelativeLayout
+                    android:id="@+id/tag_container"
+                    android:layout_below="@id/itemDescInput"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rectangle_red_border_two_round_corners_bottom"
+                    android:layout_height="40dp">
+
+                    <EditText
+                        android:id="@+id/receiver_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textNoSuggestions"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="6pt"
+                        android:visibility="gone"
+                        android:hint="@string/receiver_username"
+                        android:background="@android:color/transparent"
+                        android:maxLines="1"
+                        android:digits="@string/username_characters"/>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tagGroupScrollWrapper"
+                        android:visibility="visible">
+
+                        <me.gujun.android.taggroup.TagGroup
+                            android:id="@+id/tag_group"
+                            style="@style/TagGroup"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            app:atg_isAppendMode="true"
+                            app:atg_borderColor="@color/flashIt_red"
+                            app:atg_textColor="@color/flashIt_red"
+                            app:atg_checkedBackgroundColor="@color/flashIt_red"
+                            app:atg_checkedTextColor="@android:color/white"
+                            app:atg_backgroundColor="@android:color/transparent"/>
+
+                    </ScrollView>
+
+                </RelativeLayout>
+    </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="30dp"
+        android:layout_height="25dp"
+        android:layout_alignRight="@+id/enlistForm"
+        android:layout_alignEnd="@+id/enlistForm"
+        android:layout_alignLeft="@+id/enlistForm"
+        android:layout_alignStart="@+id/enlistForm"
+        android:layout_marginTop="10dp"
+        android:id="@+id/layoutViewButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="66dp">
+
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/flashIt_red"
+            android:id="@+id/nextButton"
+            android:text="@string/next_text"/>
+    </RelativeLayout>
+
+</RelativeLayout>

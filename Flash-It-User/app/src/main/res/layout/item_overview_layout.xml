@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:id="@+id/itemOverviewBase">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/itemOverviewImage"/>
+
+        <RelativeLayout
+            android:layout_width="235dp"
+            android:layout_toRightOf="@+id/itemOverviewImage"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/itemOverviewImage">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:id="@+id/itemOverviewName"
+                android:gravity="center_horizontal"
+                android:textSize="9.2pt"
+                android:textColor="@android:color/black"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/itemOverviewName"
+                android:id="@+id/itemOverviewPrice"
+                android:text=""/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/itemOverviewPrice"
+                android:layout_alignParentRight="true"
+                android:id="@+id/itemOverviewButtons"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:id="@+id/requestButton"
+                    android:textSize="5.5pt"
+                    android:gravity="center"
+                    android:text="@string/request_press"
+                    android:background="@color/flashIt_red"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/view_external_ad"
+                    android:textColor="@android:color/white"
+                    android:id="@+id/viewAdButton"
+                    android:textSize="5.5pt"
+                    android:gravity="center"
+                    android:background="@color/flashIt_red" />
+
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemDetail"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginLeft="20dp"
+            android:visibility="visible"
+            android:text="@string/gucci_text"
+            android:id="@+id/externalAdItemDesc"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="visible"
+        android:id="@+id/itemExtraInfo">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_availability"
+            android:id="@+id/availabilityHeader"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/availabilityHeader"
+            android:id="@+id/earliestAvailabilityDate"
+            android:layout_alignLeft="@+id/availabilityHeader"
+            android:text="Anytime" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,146 @@
+<resources>
+    <string name="app_name">Flash-It</string>
+    <string name="facebook_application_id" translatable="false">600783840083947</string>
+
+    <!-- Dummy texts for testing purposes and playing the role of a placeholder-->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gucci_text">Gucci</string>
+
+    <!-- Splash Activity -->
+    <string name="slogan">Secure Classifieds Delivery</string>
+    <string name="enable_services">Please enable storage, camera, and location services in order to continue</string>
+    <string name="exit_text">EXIT</string>
+    <string name="proceed_text">OK</string>
+
+    <!-- Register Fragment or Activity -->
+    <string name="username_prompt">Username</string>
+
+    <!-- Home Fragment text -->
+    <string name="nearby_items">Nearby Items</string>
+
+    <!-- Item Element on Home Fragment -->
+    <string name="dummy_price">$99.99</string>
+
+    <!-- Expand Search Fragment text -->
+    <string name="items_category">Items</string>
+    <string name="users_category">Users</string>
+
+    <!-- Enlist Fragment text -->
+    <string name="public_option">Public</string>
+    <string name="private_option">Private</string>
+    <string name="public_option_desc">Here you can post an item for others to view and/or request.</string>
+    <string name="private_option_desc">Here you can send an item specifically to an individual.</string>
+
+    <string name="enable_permissions">Enable in order to use the application\'s functionality.</string>
+
+    <string name="item_name">Name</string>
+    <string name="item_price">Price</string>
+    <string name="item_description">Description</string>
+
+    <string name="receiver_username">Receiver Username</string>
+
+
+    <string name="find_your_ad">Link Ad</string>
+    <string name="toggle_off">OFF</string>
+    <string name="toggle_on">ON</string>
+    <string name="view_ad">View Ad</string>
+
+    <string name="pickup">Set Pickup Location</string>
+    <string name="pickup_location">Pickup Location</string>
+    <string name="availability">Set Date/Time Availability</string>
+    <string name="available_from">From</string>
+    <string name="available_to">To</string>
+
+    <string name="additional_availability">Add Another Availability Period</string>
+
+    <string name="set_tags">Set Tags</string>
+    <string name="tags_hint">Tags</string>
+
+
+    <string name="next_text">Next</string>
+    <string name="previous_text">Previous</string>
+
+    <!-- Notification Fragment -->
+    <string name="zero_notifications">No New Notifications</string>
+
+    <!-- Menu Fragment -->
+    <string name="generic_username">johndoe213</string>
+    <string name="selling_text">Selling</string>
+    <string name="ongoing_text">Ongoing</string>
+    <string name="sold_text">Sold</string>
+
+    <!-- Login layout -->
+    <string name="login_text">LOGIN</string>
+    <string name="register_text">CREATE AN ACCOUNT</string>
+    <string name="account_reasoning">Make an account to start requesting and posting items.</string>
+    <string name="login_reasoning">Login to request and post items.</string>
+    <string name="email_address_text">Email Address</string>
+    <string name="password_text">Password</string>
+    <string name="cancel_uppercase_text">CANCEL</string>
+
+    <!-- User Info Activity -->
+    <string name="no_selling_items">No items on sale</string>
+    <string name="no_ongoing_items">No items for delivery</string>
+    <string name="no_sold_items">No sold items on display</string>
+
+
+    <!-- WebView activity -->
+    <string name="post_button">POST</string>
+    <string name="loading">Loading...</string>
+    <string name="invalid_page">This ia an invalid web page. Please try again.</string>
+
+    <!-- Item Overview dialog -->
+    <string name="request_press">REQUEST</string>
+    <string name="view_external_ad">VIEW AD</string>
+    <string name="item_availability">Earliest Availability:</string>
+
+    <!-- Item Receive Availability Dialog -->
+    <string name="set_receive_availability">Choose Availability</string>
+    <string name="transaction_cancelled">The transaction has been cancelled. Please start again.</string>
+    <string name="select_date_prompt">Please select a date for availability to continue.</string>
+
+
+    <!-- Checklist dialog -->
+    <string name="checklist_title">Checklist</string>
+    <string name="list_the_requirements">List requirements here</string>
+    <string name="base_checklist_item">Item is as described</string>
+    <string name="dummy_checklist_item">Item is exactly as described</string>
+    <string name="period_symbol">.</string>
+    <string name="plus_sign">+</string>
+    <string name="delete">DELETE</string>
+    <string name="request">Request</string>
+    <string name="finish">Finish</string>
+    <string name="cancel">Cancel</string>
+    <string name="item_requested">Item requested</string>
+    <string name="item_request_failure">There was an error with sending your request. Please check your internet connection and try again.</string>
+    <string name="gps_unavailable">GPS Unavailable</string>
+    <string name="place_search_error">Place Search Error</string>
+    <string name="format_coordinates" formatted="false">%f, %f</string>
+    <string name="format_address" formatted="false">%s</string>
+    <string name="network_error">Network Error</string>
+    <string name="results_fetching_failed">Failed to get results</string>
+    <string name="ok">OK</string>
+    <string name="must_implement_fragment_transaction_listener">" must implement OnFragmentInteractionListener"</string>
+    <string name="home">Home</string>
+    <string name="enlist">Enlist</string>
+    <string name="notifications">Notifications</string>
+    <string name="menu">Menu</string>
+    <string name="link_start_ssl">https://</string>
+    <string name="link_start">http://</string>
+    <string name="home_url">https://www.google.ca/</string>
+    <string name="home_error_redirect">https://www.google.ca/#q=</string>
+    <string name="post">post</string>
+    <string name="ad_link">adLink</string>
+    <string name="must_have_name">Must have name!</string>
+    <string name="must_have_description">Must have description!</string>
+    <string name="must_have_price">Must have price!</string>
+    <string name="username_characters">123456789abcdefghijklmnopqrstuvwxyz</string>
+    <string name="cant_be_empty">Can\'t be empty!</string>
+    <string name="simple_date_format">yyyy-MM-dd\'T\'HH:mm</string>
+    <string name="username">Username</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="register_activity_message">Please choose your public display username.</string>
+    <string name="user_does_not_exist">User does not exist!</string>
+    <string name="toast_failed">FAILED</string>
+
+</resources>
