@@ -3,7 +3,6 @@ package com.flashitdelivery.flash_it_partner.util.Helper;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PointF;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;

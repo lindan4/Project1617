@@ -27,18 +27,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name=".firebase.FlashItFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service android:name=".firebase.FlashItFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
 
-        <activity android:name=".activity.SplashActivity">
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY" />
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,44 +56,14 @@
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".activity.ProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-        <!-- Auth0 Lock -->
-        <activity
-            android:name="com.auth0.lock.LockActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Lock.Theme">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="flashit.auth0.com"
-                    android:scheme="a0iYoER9BjZdrjeOhRmwov6o3ppirgsETj" />
-            </intent-filter>
-        </activity>
-
-        <meta-data
-            android:name="com.auth0.lock.client-id"
-            android:value="@string/auth0_client_id" />
-        <meta-data
-            android:name="com.auth0.lock.domain-url"
-            android:value="@string/auth0_domain" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-        <!-- Auth0 Lock End -->
-        <activity android:name=".activity.SimpleCore"></activity>
     </application>
 
 </manifest>

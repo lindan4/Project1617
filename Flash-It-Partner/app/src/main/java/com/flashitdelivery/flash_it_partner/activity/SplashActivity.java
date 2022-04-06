@@ -8,17 +8,13 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.auth0.core.Token;
-import com.auth0.core.UserProfile;
-import com.auth0.lock.Lock;
-import com.auth0.lock.LockActivity;
 import com.flashitdelivery.flash_it_partner.R;
 
 // This activity will show Lock
@@ -28,30 +24,10 @@ public class SplashActivity extends AppCompatActivity {
     private int LOCATION_REQUEST_CODE;
     final private int ONE = 1;
 
-    private BroadcastReceiver authenticationReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            UserProfile profile = intent.getParcelableExtra(Lock.AUTHENTICATION_ACTION_PROFILE_PARAMETER);
-            Token token = intent.getParcelableExtra(Lock.AUTHENTICATION_ACTION_TOKEN_PARAMETER);
-            Log.i("USER", "User " + profile.getName() + " logged in");
-            Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
-            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.user_id_prefs), Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(getString(R.string.user_id), profile.getId());
-            editor.commit();
-
-            startActivity(startIntent);
-            finish();
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Customize your activity
-
-        broadcastManager = LocalBroadcastManager.getInstance(this);
-        broadcastManager.registerReceiver(authenticationReceiver, new IntentFilter(Lock.AUTHENTICATION_ACTION));
         Intent MainIntent = new Intent(this, MainActivity.class);
 
         startActivity(MainIntent);
@@ -88,6 +64,5 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        broadcastManager.unregisterReceiver(authenticationReceiver);
     }
 }

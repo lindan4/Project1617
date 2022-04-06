@@ -7,18 +7,17 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.location.Location;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -31,7 +30,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.akexorcist.googledirection.DirectionCallback;
 import com.akexorcist.googledirection.GoogleDirection;
 import com.akexorcist.googledirection.constant.AvoidType;
@@ -47,7 +45,6 @@ import com.flashitdelivery.flash_it_partner.DummyModels.DummyDelivery;
 import com.flashitdelivery.flash_it_partner.R;
 import com.flashitdelivery.flash_it_partner.event.NotificationEvent;
 import com.flashitdelivery.flash_it_partner.event.ui.ShowSnackbarEvent;
-import com.flashitdelivery.flash_it_partner.firebase.FirebaseMessagingHelper;
 import com.flashitdelivery.flash_it_partner.util.Helper.AvailableDeliveriesHelper;
 import com.flashitdelivery.flash_it_partner.util.Helper.DriverOnShiftOptionsHelper;
 import com.flashitdelivery.flash_it_partner.util.Helper.NotificationHelper;
@@ -79,7 +76,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.android.PolyUtil;
@@ -193,14 +189,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         EventBus.getDefault().register(this);
-        FirebaseMessagingHelper.registerDevice(this, FirebaseInstanceId.getInstance().getToken());
 
         followUser = false;
 
         activity = this;
-
-        //xaxaxa
-
 
         driverMapView = (MapView) findViewById(R.id.googleMapObject);
         driverMapView.onCreate(savedInstanceState);
@@ -345,6 +337,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         ArrayList<DummyDelivery> selectThreeNearbyDeliveries = calibrateObtainRelativeDistance(lastLocation, dummyDeliveries, 0);
+        Log.i("Delivery data: ", selectThreeNearbyDeliveries.toString());
         setItemMarkers(selectThreeNearbyDeliveries);
 
         testHelper = new AvailableDeliveriesHelper(selectThreeNearbyDeliveries, lastLocation, MainActivity.this);

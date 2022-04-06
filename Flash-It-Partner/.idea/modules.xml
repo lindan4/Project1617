@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Flash-It-Partner.iml" filepath="$PROJECT_DIR$/Flash-It-Partner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Flash-It-Partner.iml" filepath="$PROJECT_DIR$/.idea/modules/Flash-It-Partner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Flash-It-Partner.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Flash-It-Partner.app.iml" />
     </modules>
   </component>
 </project>
