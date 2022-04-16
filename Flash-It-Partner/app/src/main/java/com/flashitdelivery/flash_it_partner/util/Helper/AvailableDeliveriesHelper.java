@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+
+import android.location.Address;
+import android.location.Geocoder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +18,17 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.flashitdelivery.flash_it_partner.DummyModels.DummyDelivery;
 import com.flashitdelivery.flash_it_partner.R;
+import com.flashitdelivery.flash_it_partner.activity.MainActivity;
 import com.flashitdelivery.flash_it_partner.util.Interface.OnRequestPressListener;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
+import com.google.maps.GeocodingApiRequest;
 import com.google.maps.model.GeocodingResult;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lindan on 2016-07-11.
@@ -49,6 +55,9 @@ public class AvailableDeliveriesHelper
 
     final private double MILES_TO_KM = 1.6;
 
+    private Geocoder geocoder;
+
+
     public AvailableDeliveriesHelper(ArrayList<DummyDelivery> dummyDeliveryList, LatLng driverLatLngLocation, Activity activity)
     {
         ArrayList<LatLng> tempUserList = new ArrayList<LatLng>();
@@ -59,25 +68,41 @@ public class AvailableDeliveriesHelper
         this.setActivity(activity);
         this.setContext(getActivity());
 
+        geocoder = new Geocoder(activity);
+
         for (int k = 0; k < dummyDeliveryList.size(); k = k + 1)
         {
             try
             {
                 String userAddress = dummyDeliveryList.get(k).getUserAddress();
-                tempUserList.add(convertAddressToCoordinates(userAddress));
+                List<Address> userAddresses = geocoder.getFromLocationName(userAddress, 1);
+                Address userResultAddress = userAddresses.get(0);
+                LatLng userAddressCoordinates = new LatLng(userResultAddress.getLatitude(), userResultAddress.getLongitude());
+                tempUserList.add(userAddressCoordinates);
 
                 String receiverAddress = dummyDeliveryList.get(k).getReceiverAddress();
-                tempRecList.add(convertAddressToCoordinates(receiverAddress));
+                List<Address> receiverAddresses = geocoder.getFromLocationName(receiverAddress, 1);
+                Address userReceiverAddress = receiverAddresses.get(0);
+                LatLng receiverAddressCoordinates = new LatLng(userReceiverAddress.getLatitude(), userReceiverAddress.getLongitude());
+                tempRecList.add(receiverAddressCoordinates);
             }
             catch (Exception e)
             {
-
+                Log.i("Dummy initializaton", e.toString());
             }
         }
         this.setUserLocations(tempUserList);
         this.setReceiverLocations(tempRecList);
         this.setAcceptPressed(false);
     }
+
+//    private GeoApiContext getGeoApiContext() {
+//        if (geoApiContext == null) {
+//            geoApiContext = new GeoApiContext.Builder().apiKey(this.activity.getResources().getString(R.string.google_geocoding_key)).build();
+//        }
+//
+//        return geoApiContext;
+//    }
 
     public void show()
     {
@@ -132,29 +157,6 @@ public class AvailableDeliveriesHelper
         {
             Toast.makeText(getActivity(), "It is always null", Toast.LENGTH_LONG).show();
         }
-    }
-
-    private LatLng convertAddressToCoordinates(String address) throws Exception
-    {
-
-        GeoApiContext geoApiContext = new GeoApiContext().setApiKey(getContext().getResources().getString(R.string.google_direction_key));
-        GeocodingResult[] geocodingResults = GeocodingApi.geocode(geoApiContext, address).await();
-        while (geocodingResults.length == 0)
-        {
-            geocodingResults = GeocodingApi.geocode(geoApiContext, address).await();
-        }
-
-        LatLng mapLatMng = new LatLng(0, 0);
-
-
-        if (geocodingResults.length > 0)
-        {
-            mapLatMng = new LatLng(geocodingResults[0].geometry.location.lat, geocodingResults[0].geometry.location.lng);
-        }
-        //Geocoder mapCoord = new Geocoder(getContext(), Locale.getDefault());
-        //List<Address> mapAddresses = mapCoord.getFromLocationName(address, 1);
-
-        return mapLatMng;
     }
 
     private double getDistanceFromCurrent(LatLng startLocation, LatLng endLocation)

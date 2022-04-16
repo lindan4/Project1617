@@ -50,7 +50,6 @@
         android:layout_height="460dp"
         android:layout_below="@+id/driverUpperIcons"
         android:layout_above="@+id/directionsAndDestination"
-        android:apiKey="@string/google_maps_key"
         android:id="@+id/googleMapObject" />
 
     <Button

@@ -7,6 +7,7 @@
         <entry key="..\:/Users/lindt/Documents/GitProjects/Project1617/Flash-It-Partner/app/src/main/res/layout/activity_maps.xml" value="0.3109375" />
         <entry key="..\:/Users/lindt/Documents/GitProjects/Project1617/Flash-It-Partner/app/src/main/res/layout/activity_profile.xml" value="0.3109375" />
         <entry key="..\:/Users/lindt/Documents/GitProjects/Project1617/Flash-It-Partner/app/src/main/res/layout/activity_simple_core.xml" value="0.3109375" />
+        <entry key="..\:/Users/lindt/Documents/GitProjects/Project1617/Flash-It-Partner/app/src/main/res/layout/dialog_verify_delivery_qr.xml" value="0.21331521739130435" />
         <entry key="..\:/Users/lindt/Documents/GitProjects/Project1617/Flash-It-Partner/app/src/main/res/layout/fragment_maps.xml" value="0.2128623188405797" />
       </map>
     </option>
@@ -50,7 +51,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

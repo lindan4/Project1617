@@ -1,36 +1,65 @@
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+plugins {
+    id 'com.android.application'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+}
+
+def mapsProperties = new Properties()
+def localMapsPropertiesFile = rootProject.file('local.properties')
+if (localMapsPropertiesFile.exists()) {
+    project.logger.info('Load maps properties from local file')
+    localMapsPropertiesFile.withReader('UTF-8') { reader ->
+        mapsProperties.load(reader)
+    }
+} else {
+    project.logger.info('Load maps properties from environment')
+    try {
+        mapsProperties['MAPS_API_KEY'] = System.getenv('MAPS_API_KEY')
+    } catch(NullPointerException e) {
+        project.logger.warn('Failed to load MAPS_API_KEY from environment.', e)
+    }
+}
+def mapsApiKey = mapsProperties.getProperty('MAPS_API_KEY')
+if(mapsApiKey == null){
+    mapsApiKey = ""
+    project.logger.error('Google Maps Api Key not configured. Set it in `local_maps.properties` or in the environment variable `MAPS_API_KEY`')
+}
+
+
+
+//apply plugin: 'com.android.application'
+//apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 31
     useLibrary  'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.flashitdelivery.flash_it_partner"
         minSdkVersion 19
-        targetSdkVersion 32
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [MAPS_API_KEY: mapsApiKey]
     }
     buildTypes {
         release {
             minifyEnabled false
-            buildToolsVersion "24.0.1"
+            buildToolsVersion "30.0.2"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dexOptions {
-        javaMaxHeapSize "4g"
-    }
     packagingOptions {
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
+        resources {
+            excludes += ['META-INF/NOTICE', 'META-INF/LICENSE']
+        }
     }
     defaultConfig {
         multiDexEnabled true
     }
 }
+
+
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -38,7 +67,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.gms:play-services-gcm:17.0.0'
-    implementation 'com.google.maps:google-maps-services:0.1.15'
+    implementation 'com.google.maps:google-maps-services:2.0.0'
+    implementation 'org.slf4j:slf4j-simple:1.7.25'
     implementation 'com.google.maps.android:android-maps-utils:2.3.0'
     implementation 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     implementation 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'

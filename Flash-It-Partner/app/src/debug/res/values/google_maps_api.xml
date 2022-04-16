@@ -16,10 +16,10 @@
     string in this file.
     -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
-        AIzaSyB1Dumm5JwVqtlsmFEq7shZxfoG-lMvgIw</string>
+        AIzaSyCDQi46Unj5OhsWelrywdwy4guum0JeGAw</string>
 
-    <string name="google_direction_key">AIzaSyC1KGgV72cRPYN45b0JGXACFF11kNfpR_Y</string>
+    <string name="google_direction_key">AIzaSyCDQi46Unj5OhsWelrywdwy4guum0JeGAw</string>
 
-    <string name="google_geocoding_key">AIzaSyAAxNh5FFJZpT9PDQ-C6cxzA2xnN9LR8pM</string>
+    <string name="google_geocoding_key">AIzaSyCDQi46Unj5OhsWelrywdwy4guum0JeGAw</string>
 
 </resources>
