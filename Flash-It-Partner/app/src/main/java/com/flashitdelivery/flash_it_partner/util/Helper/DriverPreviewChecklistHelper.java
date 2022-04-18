@@ -15,8 +15,7 @@ import java.util.StringTokenizer;
 /**
  * Created by Lindan on 2016-07-09.
  */
-public class DriverPreviewChecklistHelper
-{
+public class DriverPreviewChecklistHelper {
     private Context context;
     private String title;
     private String checkListItemsAsString;
@@ -28,56 +27,50 @@ public class DriverPreviewChecklistHelper
     final private String DECLINE = "DECLINE";
 
 
-    public DriverPreviewChecklistHelper(Context context, String title, ArrayList<String> checkListItemsArrayList)
-    {
+    public DriverPreviewChecklistHelper(Context context, String title, ArrayList<String> checkListItemsArrayList) {
         this.setContext(context);
         this.setTitle(title);
         this.setCheckListItemsArrayList(checkListItemsArrayList);
 
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return this.title;
     }
 
-    public ArrayList<String> getCheckListItemsArrayList()
-    {
+    public ArrayList<String> getCheckListItemsArrayList() {
         return this.checkListItemsArrayList;
     }
 
-    public Context getContext()
-    {
+    public Context getContext() {
         return this.context;
     }
 
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setContext(Context context)
-    {
+    public void setContext(Context context) {
         this.context = context;
     }
 
-    public void setCheckListItemsAsString(String checkListItemsAsString)
-    {
+    public void setCheckListItemsAsString(String checkListItemsAsString) {
         this.checkListItemsAsString = checkListItemsAsString;
     }
-    public void setCheckListItemsArrayList(ArrayList<String> checkListItemsArrayList)
-    {
+
+    public void setCheckListItemsArrayList(ArrayList<String> checkListItemsArrayList) {
         this.checkListItemsArrayList = checkListItemsArrayList;
     }
+
     public void setOnPositiveCallback(MaterialDialog.SingleButtonCallback callback) {
         this.onPositive = callback;
     }
+
     public void setOnNegativeCallback(MaterialDialog.SingleButtonCallback callback) {
         this.onNegative = callback;
     }
 
-    public void inflate()
-    {
+    public void inflate() {
         MaterialDialog requestNotificationDialog = new MaterialDialog.Builder(context)
                 .titleColor(this.getContext().getResources().getColor(R.color.flashItPartner_purple))
                 .customView(R.layout.item_request_foreground_notification, false)
@@ -88,8 +81,7 @@ public class DriverPreviewChecklistHelper
         LinearLayout confirmChecklistLayout = (LinearLayout) checklistOutline.findViewById(R.id.notificationChecklist);
         ArrayList<String> checklistItem = this.getCheckListItemsArrayList();
 
-        for (int i = 0; i < checklistItem.size(); i = i + 1)
-        {
+        for (int i = 0; i < checklistItem.size(); i = i + 1) {
             View singleItem = LayoutInflater.from(context).inflate(R.layout.item_single_checklistitem, null);
             TextView singleItemText = (TextView) singleItem.findViewById(R.id.checklistItemString);
             singleItemText.setText(checklistItem.get(i));

@@ -8,10 +8,12 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.widget.Toast;
 
@@ -34,19 +36,15 @@ public class SplashActivity extends AppCompatActivity {
         forceLocationUsage();
     }
 
-    private void forceLocationUsage()
-    {
+    private void forceLocationUsage() {
         int LOCATION_ALLOWED = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION);
-        if (LOCATION_ALLOWED != PackageManager.PERMISSION_GRANTED)
-        {
+        if (LOCATION_ALLOWED != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.enable_location), Toast.LENGTH_LONG).show();
         }
-        else
-        {
-        }
     }
 
+    // INCOMPLETE
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         if (requestCode == LOCATION_REQUEST_CODE) {
@@ -58,7 +56,6 @@ public class SplashActivity extends AppCompatActivity {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-
 
 
     @Override

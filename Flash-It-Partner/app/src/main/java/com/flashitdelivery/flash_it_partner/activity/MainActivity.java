@@ -9,11 +9,13 @@ import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.material.snackbar.Snackbar;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
@@ -102,8 +104,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks
-{
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
 
     final private int ONE = 1;
     final private String LEFT_BRACKET = "(";
@@ -192,16 +193,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     LatLng directionItemLatLng;
 
-    private GeoApiContext geoApiContext = null;
-
-    private GeoApiContext getGeoApiContext() {
-        if (geoApiContext == null) {
-            geoApiContext = new GeoApiContext.Builder().apiKey(MainActivity.this.getResources().getString(R.string.google_geocoding_key)).build();
-        }
-
-        return geoApiContext;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -220,8 +211,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         getUserToEnableCameraUsage();
 
-        if (googleApiClient == null)
-        {
+        if (googleApiClient == null) {
             googleApiClient = new GoogleApiClient.Builder(this)
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
@@ -239,11 +229,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         startShiftButton.startAnimation(in);
 
         myProfile = (Button) findViewById(R.id.profileButton);
-        myProfile.setOnClickListener(new View.OnClickListener()
-        {
+        myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent profileIntent = new Intent(getBaseContext(), ProfileActivity.class);
                 startActivity(profileIntent);
             }
@@ -271,8 +259,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap)
-    {
+    public void onMapReady(GoogleMap googleMap) {
         //Setting map starts here
         int LOCATION_ALLOWED = ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION);
         if (LOCATION_ALLOWED == PackageManager.PERMISSION_GRANTED) {
@@ -283,8 +270,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
-            public boolean onMyLocationButtonClick()
-            {
+            public boolean onMyLocationButtonClick() {
                 followUser = true;
                 return false;
             }
@@ -292,8 +278,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
-            public void onMapClick(LatLng latLng)
-            {
+            public void onMapClick(LatLng latLng) {
                 followUser = false;
 
             }
@@ -301,10 +286,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         driverMapView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-                if (event.getAction() == MotionEvent.ACTION_MOVE)
-                {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_MOVE) {
                     followUser = false;
                 }
                 return false;
@@ -315,16 +298,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         driverGoogleMap = googleMap;
     }
 
-    public void setItemMarkers(ArrayList<DummyDelivery> deliveryItems)
-    {
+    public void setItemMarkers(ArrayList<DummyDelivery> deliveryItems) {
         driverGoogleMap.clear();
-        for (int k = 0; k < deliveryItems.size(); k = k + 1)
-        {
-            try
-            {
+        for (int k = 0; k < deliveryItems.size(); k = k + 1) {
+            try {
                 DummyDelivery nearbyDeliveryItem = deliveryItems.get(k);
-//                LatLng userAddress = convertAddressToCoordinates(nearbyDeliveryItem.getUserAddress());
-//
+
                 List<Address> addresses = geocoder.getFromLocationName(nearbyDeliveryItem.getUserAddress(), 1);
                 Address resultAddress = addresses.get(0);
                 LatLng userAddress = new LatLng(resultAddress.getLatitude(), resultAddress.getLongitude());
@@ -332,18 +311,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 MarkerOptions itemMarker = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.flash_it_custom_marker_52));
                 itemMarker.title(nearbyDeliveryItem.getName());
                 driverGoogleMap.addMarker(itemMarker.position(userAddress));
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Log.i("Error", e.getMessage());
             }
         }
 
     }
 
-    public void initializeDeliveries(LatLng lastLocation)
-    {
+    public void initializeDeliveries(LatLng lastLocation) {
 
-        final ArrayList<DummyDelivery> dummyDeliveries= new ArrayList<DummyDelivery>();
+        final ArrayList<DummyDelivery> dummyDeliveries = new ArrayList<DummyDelivery>();
         ArrayList<String> dummyChecklistOne = new ArrayList<String>();
         dummyChecklistOne.add("Good");
         dummyChecklistOne.add("Awesome");
@@ -351,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         final ArrayList<String> dummyChecklistTwo = new ArrayList<String>();
         ArrayList<String> dummyChecklistThree = new ArrayList<>();
 
-        final DummyDelivery deliveryOne = new DummyDelivery("HTC 10", "Awesome item", "yonnie", "lindan", "2 Fenton Road, Markham, ON" , "40 Audia Court, Concord, ON ", dummyChecklistOne);
+        final DummyDelivery deliveryOne = new DummyDelivery("HTC 10", "Awesome item", "yonnie", "lindan", "2 Fenton Road, Markham, ON", "40 Audia Court, Concord, ON ", dummyChecklistOne);
         final DummyDelivery deliveryTwo = new DummyDelivery("Prada", "Awesome item", "yonnie", "lindan", "196 Aldergrove Dr, Markham, ON", "676 Westburne Dr, Vaughan, ON", dummyChecklistOne);
 
         Log.i("Candy", "HAS");
@@ -359,26 +336,22 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         dummyDeliveries.add(deliveryTwo);
 
 
-
         ArrayList<DummyDelivery> selectThreeNearbyDeliveries = new ArrayList<DummyDelivery>();
         selectThreeNearbyDeliveries = calibrateObtainRelativeDistance(lastLocation, dummyDeliveries, 0);
 
         Log.i("Delivery data: ", selectThreeNearbyDeliveries.toString());
         setItemMarkers(selectThreeNearbyDeliveries);
-        GeoApiContext localContext = getGeoApiContext();
 
         testHelper = new AvailableDeliveriesHelper(selectThreeNearbyDeliveries, lastLocation, MainActivity.this);
 
         startShiftButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 if (testHelper != null) {
                     testHelper.show();
                     testHelper.setOnRequestPressListener(new OnRequestPressListener() {
                         @Override
-                        public void OnRequestPress(boolean changedVariable)
-                        {
+                        public void OnRequestPress(boolean changedVariable) {
                             Animation out = new AlphaAnimation(1.0f, 0.0f);
                             out.setDuration(1000);
                             startShiftButton.startAnimation(out);
@@ -405,8 +378,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-    private void startFetchingDeliveries(final LatLng origin, final ArrayList<DummyDelivery> dummyDeliveryUser, final boolean signal)
-    {
+    private void startFetchingDeliveries(final LatLng origin, final ArrayList<DummyDelivery> dummyDeliveryUser, final boolean signal) {
         readyToSetPrevious = true;
         readyToSetImmediate = true;
         readyToSetFollowing = true;
@@ -414,16 +386,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         followUser = true;
 
 
-        if (dummyDeliveryUser.isEmpty())
-        {
-            if (!(stepTwo))
-            {
+        if (dummyDeliveryUser.isEmpty()) {
+            if (!(stepTwo)) {
                 taskCounter = 0;
                 ArrayList<DummyDelivery> calibrateByReceiverDesintaion = calibrateObtainRelativeDistance(origin, testHelper.getDummyDeliveryList(), 1);
                 startFetchingDeliveries(testHelper.getDriverLatLngLocation(), calibrateByReceiverDesintaion, false);
-            }
-            else
-            {
+            } else {
                 taskCounter = 0;
                 polyline.remove();
                 RelativeLayout.LayoutParams driverOptionsOriginal = (RelativeLayout.LayoutParams) driverMainOptions.getLayoutParams();
@@ -447,94 +415,74 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 shiftStarted = false;
                 initializeDeliveries(testHelper.getDriverLatLngLocation());
             }
-        }
-        else
-        {
-            try
-            {
-                    String currentTask;
-                    taskCounter = taskCounter + 1;
-                    String singleUserLocationString;
-                    if (signal)
-                    {
-                        currentTask = fetchTrue + taskCounter + OF + testHelper.getDummyDeliveryList().size() + SPACE + LEFT_BRACKET + dummyDeliveryUser.get(0).getName() + RIGHT_BRACKET;
-                        stepTwo = false;
-                        singleUserLocationString = dummyDeliveryUser.get(0).getUserAddress();
-                        currentTaskText.setText(currentTask);
+        } else {
+            try {
+                String currentTask;
+                taskCounter = taskCounter + 1;
+                String singleUserLocationString;
+                if (signal) {
+                    currentTask = fetchTrue + taskCounter + OF + testHelper.getDummyDeliveryList().size() + SPACE + LEFT_BRACKET + dummyDeliveryUser.get(0).getName() + RIGHT_BRACKET;
+                    stepTwo = false;
+                    singleUserLocationString = dummyDeliveryUser.get(0).getUserAddress();
+                    currentTaskText.setText(currentTask);
+
+                } else {
+                    currentTask = fetchFalse + taskCounter + OF + testHelper.getDummyDeliveryList().size() + SPACE + LEFT_BRACKET + dummyDeliveryUser.get(0).getName() + RIGHT_BRACKET;
+                    stepTwo = true;
+                    singleUserLocationString = dummyDeliveryUser.get(0).getReceiverAddress();
+                    currentTaskText.setText(currentTask);
+                }
+
+                final LatLng singleUserLocation = convertAddressToCoordinates(singleUserLocationString);
+                destinationBox.setVisibility(View.VISIBLE);
+                destinationAddressText.setText(destinationBlank + singleUserLocationString);
+                destinationAddressText.setOnClickListener(setDirectionItemOnClick(singleUserLocation));
+                deliveryTruckBlueInfo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DriverOnShiftOptionsHelper currentShiftOptions = new DriverOnShiftOptionsHelper(MainActivity.this, "+16475335304", dummyDeliveryUser.get(0).getChecklist());
+                        currentShiftOptions.showDriverShiftOptions();
 
                     }
-                    else
-                    {
-                        currentTask = fetchFalse + taskCounter + OF + testHelper.getDummyDeliveryList().size() + SPACE + LEFT_BRACKET + dummyDeliveryUser.get(0).getName() + RIGHT_BRACKET;
-                        stepTwo = true;
-                        singleUserLocationString = dummyDeliveryUser.get(0).getReceiverAddress();
-                        currentTaskText.setText(currentTask);
-                    }
+                });
+                setCurrentDestination(singleUserLocation);
+                guideUserMap(testHelper.getDriverLatLngLocation(), singleUserLocation);
 
-                    final LatLng singleUserLocation = convertAddressToCoordinates(singleUserLocationString);
-                    destinationBox.setVisibility(View.VISIBLE);
-                    destinationAddressText.setText(destinationBlank + singleUserLocationString);
-                    destinationAddressText.setOnClickListener(setDirectionItemOnClick(singleUserLocation));
-                    deliveryTruckBlueInfo.setOnClickListener(new View.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(View v)
-                        {
-                            DriverOnShiftOptionsHelper currentShiftOptions = new DriverOnShiftOptionsHelper(MainActivity.this, "+12894008780", dummyDeliveryUser.get(0).getChecklist());
-                            currentShiftOptions.showDriverShiftOptions();
+                if (signal) {
+                    checkItem = new VerificationDialogHelper(MainActivity.this, dummyDeliveryUser.get(0), dummyDeliveryUser.get(0).getChecklist(), true);
+                } else {
+                    checkItem = new VerificationDialogHelper(MainActivity.this, dummyDeliveryUser.get(0), dummyDeliveryUser.get(0).getChecklist(), false);
+                }
 
-                        }
-                    });
-                    setCurrentDestination(singleUserLocation);
-                    guideUserMap(testHelper.getDriverLatLngLocation(), singleUserLocation);
-
-                    if (signal)
-                    {
-                        checkItem = new VerificationDialogHelper(MainActivity.this, dummyDeliveryUser.get(0), dummyDeliveryUser.get(0).getChecklist(), true);
-                    }
-                     else
-                    {
-                        checkItem = new VerificationDialogHelper(MainActivity.this, dummyDeliveryUser.get(0), dummyDeliveryUser.get(0).getChecklist(), false);
-                    }
-
-                    verifyItemButton.setText(MainActivity.this.getResources().getText(R.string.verify_delivery));
-                    verifyItemButton.setOnClickListener(new View.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(View v)
-                        {
-                            checkItem.inflate();
-                            verifyItemButton.setText(MainActivity.this.getResources().getString(R.string.pending));
-                            checkItem.setOnVerifiedListener(new OnVerifiedListener()
-                            {
-                                @Override
-                                public void onVerified(boolean verified)
-                                {
-                                    guideUserMap(origin, singleUserLocation);
-                                    ArrayList<DummyDelivery> cutList = new ArrayList<DummyDelivery>(dummyDeliveryUser.subList(1, dummyDeliveryUser.size()));
-                                    ArrayList<DummyDelivery> calibrateNewList = calibrateObtainRelativeDistance(testHelper.getDriverLatLngLocation(), cutList, 0);
-                                    verifyItemButton.setText(MainActivity.this.getResources().getString(R.string.verify_delivery));
-                                    if (signal)
-                                    {
-                                        startFetchingDeliveries(testHelper.getDriverLatLngLocation(), calibrateNewList, true);
-                                    }
-                                    else
-                                    {
-                                        startFetchingDeliveries(testHelper.getDriverLatLngLocation(), calibrateNewList, false);
-                                    }
+                verifyItemButton.setText(MainActivity.this.getResources().getText(R.string.verify_delivery));
+                verifyItemButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        checkItem.inflate();
+                        verifyItemButton.setText(MainActivity.this.getResources().getString(R.string.pending));
+                        checkItem.setOnVerifiedListener(new OnVerifiedListener() {
+                            @Override
+                            public void onVerified(boolean verified) {
+                                guideUserMap(origin, singleUserLocation);
+                                ArrayList<DummyDelivery> cutList = new ArrayList<DummyDelivery>(dummyDeliveryUser.subList(1, dummyDeliveryUser.size()));
+                                ArrayList<DummyDelivery> calibrateNewList = calibrateObtainRelativeDistance(testHelper.getDriverLatLngLocation(), cutList, 0);
+                                verifyItemButton.setText(MainActivity.this.getResources().getString(R.string.verify_delivery));
+                                if (signal) {
+                                    startFetchingDeliveries(testHelper.getDriverLatLngLocation(), calibrateNewList, true);
+                                } else {
+                                    startFetchingDeliveries(testHelper.getDriverLatLngLocation(), calibrateNewList, false);
                                 }
-                            });
-                        }
-                    });
-            }
-            catch (Exception e) {
+                            }
+                        });
+                    }
+                });
+            } catch (Exception e) {
                 Log.i("Error", e.getMessage());
             }
         }
     }
 
-    private void guideUserMap(LatLng origin, LatLng currentDestination)
-    {
+    private void guideUserMap(LatLng origin, LatLng currentDestination) {
         directionOnFocus = 0;
         try {
             GoogleDirection.withServerKey(getResources().getString(R.string.google_direction_key))
@@ -559,35 +507,32 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 PolylineOptions polylineOptions = DirectionConverter.createPolyline(getApplicationContext(), directionPositionList, 5, getResources().getColor(R.color.flashItPartner_purple));
 
 
-                                if (mapDirections.getChildCount() > 0)
-                                {
+                                if (mapDirections.getChildCount() > 0) {
                                     mapDirections.removeAllViews();
                                 }
-                                if (polyline != null)
-                                {
+                                if (polyline != null) {
                                     polyline.remove();
                                 }
                                 polyline = driverGoogleMap.addPolyline(polylineOptions);
                                 // Do something
 
-                                for (int j = 0; j < listSteps.size(); j = j + 1)
-                                {
-                                        step = listSteps.get(j);
-                                        String stepAsString = step.getHtmlInstruction();
-                                        String stepAsStringPlain = html2text(stepAsString);
-                                        View singleDirectionItem = LayoutInflater.from(MainActivity.this).inflate(R.layout.item_single_direction, null);
-                                        singleDirectionItem.setId(j);
-                                        directionItemLatLng = step.getStartLocation().getCoordination();
-                                        singleDirectionItem.setTag(directionItemLatLng);
+                                for (int j = 0; j < listSteps.size(); j = j + 1) {
+                                    step = listSteps.get(j);
+                                    String stepAsString = step.getHtmlInstruction();
+                                    String stepAsStringPlain = html2text(stepAsString);
+                                    View singleDirectionItem = LayoutInflater.from(MainActivity.this).inflate(R.layout.item_single_direction, null);
+                                    singleDirectionItem.setId(j);
+                                    directionItemLatLng = step.getStartLocation().getCoordination();
+                                    singleDirectionItem.setTag(directionItemLatLng);
 
 
-                                        singleDirectionItem.setOnClickListener(setDirectionItemOnClick(directionItemLatLng));
+                                    singleDirectionItem.setOnClickListener(setDirectionItemOnClick(directionItemLatLng));
 
-                                        //driverGoogleMap.addMarker(new MarkerOptions().position(directionItemLatLng));
-                                        TextView singleDirectionText = (TextView) singleDirectionItem.findViewById(R.id.directionText);
+                                    //driverGoogleMap.addMarker(new MarkerOptions().position(directionItemLatLng));
+                                    TextView singleDirectionText = (TextView) singleDirectionItem.findViewById(R.id.directionText);
 
-                                        singleDirectionText.setText(stepAsStringPlain);
-                                        mapDirections.addView(singleDirectionItem);
+                                    singleDirectionText.setText(stepAsStringPlain);
+                                    mapDirections.addView(singleDirectionItem);
                                 }
                             }
                             if (status.equals(RequestResult.NOT_FOUND)) {
@@ -600,54 +545,31 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Toast.makeText(MainActivity.this, "Failure", Toast.LENGTH_LONG).show();
                         }
                     });
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.i("Direction exception", e.toString());
 
         }
     }
 
     //7/19 9.12
-    public View.OnClickListener setDirectionItemOnClick(final LatLng moveToLocation)
-    {
-        return new View.OnClickListener()
-        {
+    public View.OnClickListener setDirectionItemOnClick(final LatLng moveToLocation) {
+        return new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 followUser = false;
                 driverGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(moveToLocation, 19));
             }
         };
     }
 
-    public static String html2text(String html)
-    {
+    public static String html2text(String html) {
         return Jsoup.parse(html).text();
     }
 
 
-    private LatLng convertAddressToCoordinates(String address)
-    {
+    private LatLng convertAddressToCoordinates(String address) {
         Log.i("Address", address);
         try {
-
-//            GeoApiContext localGeoApiContext = this.getGeoApiContext();
-//
-//            GeocodingApiRequest req = GeocodingApi.newRequest(localGeoApiContext);
-//            GeocodingResult[] geocodingResults = req.address(address).await();
-//
-//            LatLng mapLatMng = new LatLng(0, 0);
-//
-//
-//            if (geocodingResults.length > 0)
-//            {
-//                mapLatMng = new LatLng(geocodingResults[0].geometry.location.lat, geocodingResults[0].geometry.location.lng);
-//            }
-//            localGeoApiContext.shutdown();
-
-//            Log.i("User address: ", itemOwnerAddress);
             List<Address> addresses = geocoder.getFromLocationName(address, 1);
             Address resultAddress = addresses.get(0);
 
@@ -655,8 +577,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             return mapLatMng;
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.d("ApiException", e.toString());
             return new LatLng(0, 0);
         }
@@ -666,15 +587,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     // 0 for distance from driver to users
     // 1 for distance from driver to people receiving items
-    public ArrayList<DummyDelivery> calibrateObtainRelativeDistance(LatLng currentPosition, ArrayList<DummyDelivery> listToCalibrateObtain, int signal)
-    {
+    public ArrayList<DummyDelivery> calibrateObtainRelativeDistance(LatLng currentPosition, ArrayList<DummyDelivery> listToCalibrateObtain, int signal) {
         ArrayList<DummyDelivery> finalList = new ArrayList<DummyDelivery>();
 
         Log.i("List to calibrate len", listToCalibrateObtain.size() + "");
-        if (!listToCalibrateObtain.isEmpty())
-        {
-            if (signal == 0)
-            {
+        if (!listToCalibrateObtain.isEmpty()) {
+            if (signal == 0) {
                 try {
 
                     ArrayList<Double> distancesList = new ArrayList<Double>();
@@ -704,22 +622,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                     Log.i("Final list", finalList.toString());
 
-                }
-                catch (Exception e)
-                {
-                    Log.d("Exception christ:", e.toString());
+                } catch (Exception e) {
+                    Log.d("Exception thrown:", e.toString());
                 }
             }
-            if (signal == 1)
-            {
+            if (signal == 1) {
 
                 try {
 
                     ArrayList<Double> distancesList = new ArrayList<Double>();
                     Map<Double, DummyDelivery> sortTempMap = new TreeMap<Double, DummyDelivery>();
 
-                    for (int i = 0; i < listToCalibrateObtain.size(); i = i + 1)
-                    {
+                    for (int i = 0; i < listToCalibrateObtain.size(); i = i + 1) {
                         DummyDelivery delivery = listToCalibrateObtain.get(i);
                         String itemOwnerAddress = delivery.getUserAddress();
                         Log.i("User address: ", itemOwnerAddress);
@@ -732,30 +646,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         distancesList.add(relativeDistance);
                     }
                     Collections.sort(distancesList);
-//                    if (distancesList.size() <3)
-//                    {
-//                        for (int j = 0; j < distancesList.size(); j = j + 1)
-//                        {
-//                            Double getRelDis = distancesList.get(j);
-//                            finalList.add(sortTempMap.get(getRelDis));
-//
-//                        }
-//                    }
-//                    else
-//                    {
-//                        for (int k = 0; k < 3; k = k + 1)
-//                        {
-//                            Double getRelDis = distancesList.get(k);
-//                            finalList.add(sortTempMap.get(getRelDis));
-//                        }
-//                    }
 
                     for (Double getRelDis : distancesList) {
                         finalList.add(sortTempMap.get(getRelDis));
                     }
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     Log.i("Exception", e.getMessage());
 
                 }
@@ -766,8 +661,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     //Credit to http://stackoverflow.com/questions/14394366/find-distance-between-two-points-on-map-using-google-map-api-v2
-    private double getDistanceFromCurrent(LatLng startLocation, LatLng endLocation)
-    {
+    private double getDistanceFromCurrent(LatLng startLocation, LatLng endLocation) {
         int Radius = 6371;// radius of earth in Km
         double lat1 = startLocation.latitude;
         double lat2 = endLocation.latitude;
@@ -814,40 +708,34 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         googleApiClient.connect();
         super.onStart();
     }
 
     @Override
-    public final void onDestroy()
-    {
+    public final void onDestroy() {
         driverMapView.onDestroy();
         super.onDestroy();
     }
 
     //http://stackoverflow.com/questions/8295986/how-to-calculate-dp-from-pixels-in-android-programmatically
-    public static int dpToPx(int dp)
-    {
+    public static int dpToPx(int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
-    public static int pxToDp(int px)
-    {
+    public static int pxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 
     @Override
-    public final void onLowMemory()
-    {
+    public final void onLowMemory() {
         driverMapView.onLowMemory();
         super.onLowMemory();
     }
 
     @Override
-    public final void onPause()
-    {
+    public final void onPause() {
         driverMapView.onPause();
         stopLocationUpdates();
         super.onPause();
@@ -855,20 +743,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     @Override
-    public final void onResume()
-    {
+    public final void onResume() {
         driverMapView.onResume();
         super.onResume();
 
-        if (googleApiClient.isConnected() & !(requestingLocationUpdates))
-        {
+        if (googleApiClient.isConnected() & !(requestingLocationUpdates)) {
             startLocationUpdates();
         }
     }
 
     @Override
-    protected void onStop()
-    {
+    protected void onStop() {
         googleApiClient.disconnect();
         requestingLocationUpdates = false;
         super.onStop();
@@ -876,8 +761,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
     }
 
     @Subscribe
@@ -888,20 +772,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Snackbar.make(findViewById(android.R.id.content), event.data.get("MESSAGE"), Snackbar.LENGTH_LONG).show();
     }
 
-    public void setCurrentDestination(LatLng currentDestination)
-    {
+    public void setCurrentDestination(LatLng currentDestination) {
         this.currentDestination = currentDestination;
     }
 
-    public LatLng getCurrentDestination()
-    {
+    public LatLng getCurrentDestination() {
         LatLng current;
-        if (this.currentDestination == null)
-        {
+        if (this.currentDestination == null) {
             current = driverLatLngLocation;
-        }
-        else
-        {
+        } else {
             current = this.currentDestination;
         }
         return current;
@@ -912,6 +791,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onNotificationEventReceived(NotificationEvent event) {
         NotificationEventHandler.handle(this, this, event);
     }
+
     @SuppressWarnings("unused")
     @Subscribe
     public void onShowSnackbarEvent(ShowSnackbarEvent event) {
@@ -919,35 +799,28 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onConnected(@Nullable Bundle bundle)
-    {
+    public void onConnected(@Nullable Bundle bundle) {
         initializeCurrentLocation();
     }
 
-    private void initializeCurrentLocation()
-    {
+    private void initializeCurrentLocation() {
         int LOCATION_ALLOWED = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION);
-        if (LOCATION_ALLOWED == PackageManager.PERMISSION_GRANTED)
-        {
+        if (LOCATION_ALLOWED == PackageManager.PERMISSION_GRANTED) {
             createLocationRequest();
             startLocationUpdates();
 
             lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-            if (lastLocation != null)
-            {
+            if (lastLocation != null) {
                 initializeDeliveries(new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()));
                 driverGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()), 16));
-            }
-            else
-            {
+            } else {
                 LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
                 initializeCurrentLocation();
             }
         }
     }
 
-    protected void createLocationRequest()
-    {
+    protected void createLocationRequest() {
         locationRequest = new LocationRequest();
         locationRequest.setInterval(1000);
         locationRequest.setFastestInterval(500);
@@ -962,22 +835,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         pendingResult.setResultCallback(new ResultCallback<LocationSettingsResult>() {
             @Override
-            public void onResult(@NonNull LocationSettingsResult locationSettingsResult)
-            {
+            public void onResult(@NonNull LocationSettingsResult locationSettingsResult) {
                 Status result = locationSettingsResult.getStatus();
-                if (result.getStatusCode() == LocationSettingsStatusCodes.SUCCESS)
-                {
+                if (result.getStatusCode() == LocationSettingsStatusCodes.SUCCESS) {
                     requestingLocationUpdates = true;
                     //Toast.makeText(MainActivity.this, "Gucci", Toast.LENGTH_SHORT).show();
                 }
 
-                if (result.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED)
-                {
+                if (result.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED) {
                     requestingLocationUpdates = false;
                     Toast.makeText(MainActivity.this, "Please enable location services", Toast.LENGTH_SHORT).show();
                 }
-                if (result.getStatusCode() == LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE)
-                {
+                if (result.getStatusCode() == LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE) {
                     requestingLocationUpdates = false;
                     Toast.makeText(MainActivity.this, "App cannot access settings", Toast.LENGTH_SHORT).show();
                 }
@@ -986,11 +855,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-    protected void startLocationUpdates()
-    {
+    protected void startLocationUpdates() {
         int LOCATION_ALLOWED = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION);
-        if (LOCATION_ALLOWED == PackageManager.PERMISSION_GRANTED)
-        {
+        if (LOCATION_ALLOWED == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
         }
 
@@ -1002,69 +869,53 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
-    {
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 
     @Override
-    public void onLocationChanged(Location location)
-    {
+    public void onLocationChanged(Location location) {
         if (testHelper != null) {
             testHelper.setDriverLatLngLocation(new LatLng(location.getLatitude(), location.getLongitude()));
-            if (shiftStarted)
-            {
-                if (followUser)
-                {
+            if (shiftStarted) {
+                if (followUser) {
                     driverGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 16));
                     //driverGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 16));
-                }
-                else
-                {
+                } else {
                     driverGoogleMap.stopAnimation();
                 }
 
-                if (directionPositionList != null)
-                {
+                if (directionPositionList != null) {
                     boolean onPath = PolyUtil.isLocationOnPath(testHelper.getDriverLatLngLocation(), directionPositionList, true, TOLERANCE);
 
-                    if (!(onPath))
-                    {
+                    if (!(onPath)) {
                         Toast.makeText(MainActivity.this, "Recalculating", Toast.LENGTH_SHORT).show();
                         guideUserMap(testHelper.getDriverLatLngLocation(), getCurrentDestination());
                     }
                 }
 
-                //Still need to test it out
-                if (mapDirections != null)
-                {
+                if (mapDirections != null) {
                     View prevDirection = mapDirections.findViewById(directionOnFocus - 1);
                     View immediateDirection = mapDirections.findViewById(directionOnFocus);
                     View followingDirection = mapDirections.findViewById(directionOnFocus + 1);
 
                     //prevDirection
-                    if (prevDirection != null)
-                    {
+                    if (prevDirection != null) {
                         TextView prevText = (TextView) prevDirection.findViewById(R.id.directionText);
                         prevText.setTypeface(null, Typeface.NORMAL);
                         LatLng prevLatLng = (LatLng) prevDirection.getTag();
-                        if (getDistanceFromCurrent(testHelper.getDriverLatLngLocation(), prevLatLng) < DISTANCE_TO_NEXT_DIRECTION)
-                        {
-                            if (readyToSetPrevious)
-                            {
+                        if (getDistanceFromCurrent(testHelper.getDriverLatLngLocation(), prevLatLng) < DISTANCE_TO_NEXT_DIRECTION) {
+                            if (readyToSetPrevious) {
                                 directionOnFocus = directionOnFocus - 1;
                                 readyToSetPrevious = false;
                             }
-                        }
-                        else
-                        {
+                        } else {
                             readyToSetPrevious = true;
                         }
                     }
 
                     //immediateDirection
-                    if (immediateDirection != null)
-                    {
+                    if (immediateDirection != null) {
                         TextView immediateText = (TextView) immediateDirection.findViewById(R.id.directionText);
                         immediateText.setTypeface(null, Typeface.BOLD);
 
@@ -1074,21 +925,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
                     //followingDirection
-                    if (followingDirection != null)
-                    {
+                    if (followingDirection != null) {
                         TextView followingText = (TextView) followingDirection.findViewById(R.id.directionText);
                         followingText.setTypeface(null, Typeface.NORMAL);
                         LatLng followingLatLng = (LatLng) followingDirection.getTag();
-                        if (getDistanceFromCurrent(testHelper.getDriverLatLngLocation(), followingLatLng) < DISTANCE_TO_NEXT_DIRECTION)
-                        {
-                            if (readyToSetFollowing)
-                            {
+                        if (getDistanceFromCurrent(testHelper.getDriverLatLngLocation(), followingLatLng) < DISTANCE_TO_NEXT_DIRECTION) {
+                            if (readyToSetFollowing) {
                                 directionOnFocus = directionOnFocus + 1;
                                 readyToSetFollowing = false;
                             }
-                        }
-                        else
-                        {
+                        } else {
                             readyToSetFollowing = true;
                         }
                     }
@@ -1107,23 +953,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //                    verifyItemButton.setText(MainActivity.this.getResources().getText(R.string.verify_delivery));
 //                    verifyItemButton.setVisibility(View.INVISIBLE);
 //                }
-            }
-            else
-            {
-                refreshButton.setOnClickListener(new View.OnClickListener()
-                {
+            } else {
+                refreshButton.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v)
-                    {
+                    public void onClick(View v) {
                         Log.i("tap", "tap");
-                        if (!(shiftStarted))
-                        {
+                        if (!(shiftStarted)) {
                             Toast.makeText(MainActivity.this, MainActivity.this.getResources().getString(R.string.reassigning_deliveries), Toast.LENGTH_SHORT).show();
                             driverGoogleMap.clear();
                             initializeDeliveries(new LatLng(location.getLatitude(), location.getLongitude()));
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(MainActivity.this, MainActivity.this.getResources().getString(R.string.cannot_refresh), Toast.LENGTH_SHORT).show();
                         }
 
@@ -1133,10 +972,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         }
     }
-    protected void stopLocationUpdates()
-    {
-        if (googleApiClient.isConnected())
-        {
+
+    protected void stopLocationUpdates() {
+        if (googleApiClient.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(
                     googleApiClient, this);
             requestingLocationUpdates = false;

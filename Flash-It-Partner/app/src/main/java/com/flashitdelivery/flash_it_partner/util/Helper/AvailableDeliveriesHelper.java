@@ -33,8 +33,7 @@ import java.util.List;
 /**
  * Created by Lindan on 2016-07-11.
  */
-public class AvailableDeliveriesHelper
-{
+public class AvailableDeliveriesHelper {
     private ArrayList<DummyDelivery> dummyDeliveryList;
     private ArrayList<LatLng> userLocations;
     private ArrayList<LatLng> receiverLocations;
@@ -58,8 +57,7 @@ public class AvailableDeliveriesHelper
     private Geocoder geocoder;
 
 
-    public AvailableDeliveriesHelper(ArrayList<DummyDelivery> dummyDeliveryList, LatLng driverLatLngLocation, Activity activity)
-    {
+    public AvailableDeliveriesHelper(ArrayList<DummyDelivery> dummyDeliveryList, LatLng driverLatLngLocation, Activity activity) {
         ArrayList<LatLng> tempUserList = new ArrayList<LatLng>();
         ArrayList<LatLng> tempRecList = new ArrayList<LatLng>();
 
@@ -70,10 +68,8 @@ public class AvailableDeliveriesHelper
 
         geocoder = new Geocoder(activity);
 
-        for (int k = 0; k < dummyDeliveryList.size(); k = k + 1)
-        {
-            try
-            {
+        for (int k = 0; k < dummyDeliveryList.size(); k = k + 1) {
+            try {
                 String userAddress = dummyDeliveryList.get(k).getUserAddress();
                 List<Address> userAddresses = geocoder.getFromLocationName(userAddress, 1);
                 Address userResultAddress = userAddresses.get(0);
@@ -86,8 +82,7 @@ public class AvailableDeliveriesHelper
                 LatLng receiverAddressCoordinates = new LatLng(userReceiverAddress.getLatitude(), userReceiverAddress.getLongitude());
                 tempRecList.add(receiverAddressCoordinates);
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Log.i("Dummy initializaton", e.toString());
             }
         }
@@ -96,16 +91,7 @@ public class AvailableDeliveriesHelper
         this.setAcceptPressed(false);
     }
 
-//    private GeoApiContext getGeoApiContext() {
-//        if (geoApiContext == null) {
-//            geoApiContext = new GeoApiContext.Builder().apiKey(this.activity.getResources().getString(R.string.google_geocoding_key)).build();
-//        }
-//
-//        return geoApiContext;
-//    }
-
-    public void show()
-    {
+    public void show() {
         double distance;
         itemDialog = new MaterialDialog.Builder(getContext()).title("Nearby item(s) available for delivery")
                 .customView(R.layout.list_delivery_items, false)
@@ -114,8 +100,7 @@ public class AvailableDeliveriesHelper
                 .negativeText("DECLINE")
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which)
-                    {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         setAcceptPressed(true);
                     }
                 })
@@ -134,33 +119,31 @@ public class AvailableDeliveriesHelper
         if (getDriverLatLngLocation() != null) {
             for (int i = 0; i < userLocations.size(); i = i + 1) {
 
-                    LatLng singleUserDestination = userLocations.get(i);
+                LatLng singleUserDestination = userLocations.get(i);
 
-                    //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-                    distance = getDistanceFromCurrent(getDriverLatLngLocation(), singleUserDestination);
-                    String distanceFormat = String.format("%.2f", distance);
+                //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                distance = getDistanceFromCurrent(getDriverLatLngLocation(), singleUserDestination);
+                String distanceFormat = String.format("%.2f", distance);
 
 
-                    LinearLayout baseItemLayout = (LinearLayout) listDeliveryItems.findViewById(R.id.baseDeliveryList);
+                LinearLayout baseItemLayout = (LinearLayout) listDeliveryItems.findViewById(R.id.baseDeliveryList);
 
-                    View itemDeliveryAndChecklist = LayoutInflater.from(getContext()).inflate(R.layout.item_delivery_and_checklist, null);
-                    TextView deliveryName = (TextView) itemDeliveryAndChecklist.findViewById(R.id.deliveryName);
-                    TextView relativeDistance = (TextView) itemDeliveryAndChecklist.findViewById(R.id.relativeDistance);
-                    deliveryName.setText(dummyDeliveryList.get(i).getName());
-                    relativeDistance.setText(LEFT_BRACKET + distanceFormat + KM + RIGHT_BRACKET);
-                    //TextView dropDown = (TextView) itemDeliveryAndChecklist.findViewById(R.id.dropDownChecklist);
-                    baseItemLayout.addView(itemDeliveryAndChecklist);
+                View itemDeliveryAndChecklist = LayoutInflater.from(getContext()).inflate(R.layout.item_delivery_and_checklist, null);
+                TextView deliveryName = (TextView) itemDeliveryAndChecklist.findViewById(R.id.deliveryName);
+                TextView relativeDistance = (TextView) itemDeliveryAndChecklist.findViewById(R.id.relativeDistance);
+                deliveryName.setText(dummyDeliveryList.get(i).getName());
+                relativeDistance.setText(LEFT_BRACKET + distanceFormat + KM + RIGHT_BRACKET);
+                //TextView dropDown = (TextView) itemDeliveryAndChecklist.findViewById(R.id.dropDownChecklist);
+                baseItemLayout.addView(itemDeliveryAndChecklist);
 
             }
         }
-        else
-        {
+        else {
             Toast.makeText(getActivity(), "It is always null", Toast.LENGTH_LONG).show();
         }
     }
 
-    private double getDistanceFromCurrent(LatLng startLocation, LatLng endLocation)
-    {
+    private double getDistanceFromCurrent(LatLng startLocation, LatLng endLocation) {
         int Radius = 6371;// radius of earth in Km
         double lat1 = startLocation.latitude;
         double lat2 = endLocation.latitude;
@@ -185,84 +168,68 @@ public class AvailableDeliveriesHelper
         return (Radius * c) * MILES_TO_KM;
     }
 
-    public ArrayList<DummyDelivery> getDummyDeliveryList()
-    {
+    public ArrayList<DummyDelivery> getDummyDeliveryList() {
         return this.dummyDeliveryList;
     }
 
-    public void setDummyDeliveryList(ArrayList<DummyDelivery> dummyDeliveryList)
-    {
+    public void setDummyDeliveryList(ArrayList<DummyDelivery> dummyDeliveryList) {
         this.dummyDeliveryList = dummyDeliveryList;
     }
 
-    public Context getContext()
-    {
+    public Context getContext() {
         return this.context;
     }
 
-    public void setContext(Context context)
-    {
+    public void setContext(Context context) {
         this.context = context;
     }
 
-    public void setDriverLatLngLocation(LatLng driverLatLngLocation)
-    {
+    public void setDriverLatLngLocation(LatLng driverLatLngLocation) {
         this.driverLatLngLocation = driverLatLngLocation;
     }
 
-    public LatLng getDriverLatLngLocation()
-    {
+    public LatLng getDriverLatLngLocation() {
         return this.driverLatLngLocation;
     }
 
-    public Activity getActivity()
-    {
-        return  this.activity;
+    public Activity getActivity() {
+        return this.activity;
     }
 
-    public void setActivity(Activity activity)
-    {
+    public void setActivity(Activity activity) {
         this.activity = activity;
     }
 
-    public ArrayList<LatLng> getUserLocations()
-    {
+    public ArrayList<LatLng> getUserLocations() {
         return this.userLocations;
     }
 
-    public void setUserLocations(ArrayList<LatLng> userLocations)
-    {
+    public void setUserLocations(ArrayList<LatLng> userLocations) {
         this.userLocations = userLocations;
     }
 
-    public ArrayList<LatLng> getReceiverLocations()
-    {
+    public ArrayList<LatLng> getReceiverLocations() {
         return this.receiverLocations;
     }
 
-    public void setReceiverLocations(ArrayList<LatLng> receiverLocations)
-    {
+    public void setReceiverLocations(ArrayList<LatLng> receiverLocations) {
         this.receiverLocations = receiverLocations;
     }
 
-    public boolean getAcceptPressed()
-    {
+    public boolean getAcceptPressed() {
         return this.acceptPressed;
     }
 
-    public void setAcceptPressed(boolean acceptPressed)
-    {
+    public void setAcceptPressed(boolean acceptPressed) {
         boolean previousValue = false;
         this.acceptPressed = acceptPressed;
 
-        if ((previousValue != getAcceptPressed()) && (this.onRequestPressListener != null))
-        {
+        if ((previousValue != getAcceptPressed()) && (this.onRequestPressListener != null)) {
             this.onRequestPressListener.OnRequestPress(getAcceptPressed());
         }
     }
 
-    public void setOnRequestPressListener(OnRequestPressListener onRequestPressListener)
-    {
+    public void setOnRequestPressListener(OnRequestPressListener onRequestPressListener) {
         this.onRequestPressListener = onRequestPressListener;
     }
 

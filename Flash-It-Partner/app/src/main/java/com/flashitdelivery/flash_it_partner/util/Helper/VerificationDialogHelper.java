@@ -22,8 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by Lindan on 2016-07-13.
  */
-public class VerificationDialogHelper implements QRCodeReaderView.OnQRCodeReadListener
-{
+public class VerificationDialogHelper implements QRCodeReaderView.OnQRCodeReadListener {
     private final String VERIFY_SOMETHING = "Verify ";
     private final String ENSURE_RECEIVER_VALIDITY = "Verify receiver of ";
 
@@ -59,8 +58,7 @@ public class VerificationDialogHelper implements QRCodeReaderView.OnQRCodeReadLi
     //false is user id delivering items
     private boolean fetching;
 
-    public VerificationDialogHelper(Activity activity, DummyDelivery dummyDelivery, ArrayList<String> deliveryChecklist, boolean fetching)
-    {
+    public VerificationDialogHelper(Activity activity, DummyDelivery dummyDelivery, ArrayList<String> deliveryChecklist, boolean fetching) {
         this.setContext(activity);
         this.setDummyDelivery(dummyDelivery);
         this.setDeliveryChecklist(deliveryChecklist);
@@ -69,15 +67,12 @@ public class VerificationDialogHelper implements QRCodeReaderView.OnQRCodeReadLi
         this.setFetching(fetching);
 
 
-        if (getFetching())
-        {
+        if (getFetching()) {
             verifyDialog = new MaterialDialog.Builder(context)
                     .title(VERIFY_SOMETHING + dummyDelivery.getName())
                     .canceledOnTouchOutside(false)
                     .customView(R.layout.dialog_verify_delivery_qr, false).build();
-        }
-        else
-        {
+        } else {
             verifyDialog = new MaterialDialog.Builder(context)
                     .title(ENSURE_RECEIVER_VALIDITY + dummyDelivery.getName())
                     .canceledOnTouchOutside(false)
@@ -93,17 +88,12 @@ public class VerificationDialogHelper implements QRCodeReaderView.OnQRCodeReadLi
         pressToValidate = (Button) verifyDialogView.findViewById(R.id.pressToValidate);
         qrCodeInput = (EditText) verifyDialogView.findViewById(R.id.inputCode);
 
-        pressToValidate.setOnClickListener(new View.OnClickListener()
-        {
+        pressToValidate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if (qrCodeInput.getText().toString().length() == 0)
-                {
+            public void onClick(View v) {
+                if (qrCodeInput.getText().toString().length() == 0) {
                     qrCodeInput.setText("");
-                }
-                else
-                {
+                } else {
                     validateCode(qrCodeInput.getText().toString());
                 }
 
@@ -111,21 +101,16 @@ public class VerificationDialogHelper implements QRCodeReaderView.OnQRCodeReadLi
         });
 
 
-        changeVeriMethod.setOnClickListener(new View.OnClickListener()
-        {
+        changeVeriMethod.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if (!(getCodeActivated()))
-                {
+            public void onClick(View v) {
+                if (!(getCodeActivated())) {
                     changeVeriMethod.setText(getContext().getResources().getString(R.string.loading_lower));
                     qrView.setVisibility(View.GONE);
                     inputCodeLayout.setVisibility(View.VISIBLE);
                     changeVeriMethod.setText(getContext().getResources().getString(R.string.scan_qr_instead));
                     setCodeActivated(true);
-                }
-                else
-                {
+                } else {
                     changeVeriMethod.setText(getContext().getResources().getString(R.string.loading_lower));
                     inputCodeLayout.setVisibility(View.INVISIBLE);
                     qrView.setVisibility(View.VISIBLE);
@@ -136,60 +121,49 @@ public class VerificationDialogHelper implements QRCodeReaderView.OnQRCodeReadLi
         });
     }
 
-    public void inflate()
-    {
+    public void inflate() {
         verifyDialog.show();
     }
 
-    public Context getContext()
-    {
+    public Context getContext() {
         return this.context;
     }
 
-    public void setContext(Context context)
-    {
+    public void setContext(Context context) {
         this.context = context;
     }
 
-    public DummyDelivery getDummyDelivery()
-    {
+    public DummyDelivery getDummyDelivery() {
         return this.dummyDelivery;
     }
 
-    public void setDummyDelivery(DummyDelivery dummyDelivery)
-    {
+    public void setDummyDelivery(DummyDelivery dummyDelivery) {
         this.dummyDelivery = dummyDelivery;
     }
 
-    public ArrayList<String> getDeliveryChecklist()
-    {
+    public ArrayList<String> getDeliveryChecklist() {
         return this.deliveryChecklist;
     }
 
-    public void setDeliveryChecklist(ArrayList<String> deliveryChecklist)
-    {
+    public void setDeliveryChecklist(ArrayList<String> deliveryChecklist) {
         this.deliveryChecklist = deliveryChecklist;
     }
 
-    public boolean getCodeActivated()
-    {
+    public boolean getCodeActivated() {
         return this.codeActivated;
     }
 
-    public void setCodeActivated(boolean codeActivated)
-    {
+    public void setCodeActivated(boolean codeActivated) {
         this.codeActivated = codeActivated;
     }
 
     @Override
-    public void onQRCodeRead(String text, PointF[] points)
-    {
+    public void onQRCodeRead(String text, PointF[] points) {
         validateCode(text);
     }
 
     @Override
-    public void cameraNotFound()
-    {
+    public void cameraNotFound() {
         qrView.setVisibility(View.GONE);
         inputCodeLayout.setVisibility(View.VISIBLE);
         changeVeriMethod.setText("");
@@ -197,48 +171,36 @@ public class VerificationDialogHelper implements QRCodeReaderView.OnQRCodeReadLi
     }
 
     @Override
-    public void QRCodeNotFoundOnCamImage()
-    {
+    public void QRCodeNotFoundOnCamImage() {
 
     }
 
-    public void validateCode(String code)
-    {
+    public void validateCode(String code) {
         itemMatchesText = true;
         verifyDialog.dismiss();
-        if (getFetching())
-        {
+        if (getFetching()) {
             inflateCheckableChecklist(getDeliveryChecklist());
-        }
-        else
-        {
+        } else {
             this.setVerified(true);
         }
 
 
     }
 
-    private void inflateCheckableChecklist(ArrayList<String> deliveryChecklist)
-    {
-        if (deliveryChecklist.isEmpty())
-        {
+    private void inflateCheckableChecklist(ArrayList<String> deliveryChecklist) {
+        if (deliveryChecklist.isEmpty()) {
             setVerified(true);
-        }
-        else
-        {
+        } else {
             multiChoiceList = new MaterialDialog.Builder(getContext())
                     .title(checklistPrompt)
                     .canceledOnTouchOutside(false)
                     .items(deliveryChecklist)
-                    .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice()
-                    {
+                    .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
                         @Override
-                        public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text)
-                        {
+                        public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
                             int size = dialog.getListView().getCount();
                             Integer[] checkedItems = dialog.getSelectedIndices();
-                            if (checkedItems.length == size)
-                            {
+                            if (checkedItems.length == size) {
                                 Toast.makeText(getContext(), "We're good", Toast.LENGTH_SHORT).show();
                             }
                             return false;
@@ -251,27 +213,20 @@ public class VerificationDialogHelper implements QRCodeReaderView.OnQRCodeReadLi
             View neutral = multiChoiceList.getActionButton(DialogAction.NEUTRAL);
             View positive = multiChoiceList.getActionButton(DialogAction.POSITIVE);
 
-            neutral.setOnClickListener(new View.OnClickListener()
-            {
+            neutral.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     multiChoiceList.selectAllIndicies();
                 }
             });
 
-            positive.setOnClickListener(new View.OnClickListener()
-            {
+            positive.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    if (multiChoiceList.getSelectedIndices().length == multiChoiceList.getListView().getCount())
-                    {
+                public void onClick(View v) {
+                    if (multiChoiceList.getSelectedIndices().length == multiChoiceList.getListView().getCount()) {
                         multiChoiceList.dismiss();
                         setVerified(true);
-                    }
-                    else
-                    {
+                    } else {
                         int selectedItems = multiChoiceList.getSelectedIndices().length;
                         int totalItems = multiChoiceList.getListView().getCount();
                         String issue = "Only " + selectedItems + " of " + totalItems + " requirements have been satisfied";
@@ -284,34 +239,28 @@ public class VerificationDialogHelper implements QRCodeReaderView.OnQRCodeReadLi
         }
     }
 
-    public void setOnVerifiedListener(OnVerifiedListener onVerifiedListener)
-    {
+    public void setOnVerifiedListener(OnVerifiedListener onVerifiedListener) {
         this.onVerifiedListener = onVerifiedListener;
     }
 
-    public boolean getVerified()
-    {
+    public boolean getVerified() {
         return this.verified;
     }
 
-    public void setVerified(boolean verified)
-    {
+    public void setVerified(boolean verified) {
         this.verified = verified;
         boolean previousValue = false;
 
-       if ((previousValue != getVerified()) && (onVerifiedListener != null))
-       {
-           this.onVerifiedListener.onVerified(getVerified());
-       }
+        if ((previousValue != getVerified()) && (onVerifiedListener != null)) {
+            this.onVerifiedListener.onVerified(getVerified());
+        }
     }
 
-    public boolean getFetching()
-    {
+    public boolean getFetching() {
         return this.fetching;
     }
 
-    public void setFetching(boolean fetching)
-    {
+    public void setFetching(boolean fetching) {
         this.fetching = fetching;
     }
 }

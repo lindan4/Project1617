@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -18,8 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by Lindan on 2016-07-31.
  */
-public class DriverOnShiftOptionsHelper implements ActivityCompat.OnRequestPermissionsResultCallback
-{
+public class DriverOnShiftOptionsHelper implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     private final String checkFor = "Requirements to check for on item";
 
@@ -30,8 +31,7 @@ public class DriverOnShiftOptionsHelper implements ActivityCompat.OnRequestPermi
 
     private int CALL_REQUEST_CODE = 1;
 
-    public DriverOnShiftOptionsHelper(Activity activity, String personPhoneNum, ArrayList<String> checklist)
-    {
+    public DriverOnShiftOptionsHelper(Activity activity, String personPhoneNum, ArrayList<String> checklist) {
         amidShiftDialog = new MaterialDialog.Builder(activity)
                 .customView(R.layout.shift_option_list, false).build();
 
@@ -41,29 +41,23 @@ public class DriverOnShiftOptionsHelper implements ActivityCompat.OnRequestPermi
         this.setPersonPhoneNum(personPhoneNum);
     }
 
-    public void showDriverShiftOptions()
-    {
+    public void showDriverShiftOptions() {
         amidShiftDialog.show();
-        if (amidShiftDialog != null)
-        {
+        if (amidShiftDialog != null) {
             View shiftOptionsview = amidShiftDialog.getCustomView();
 
             RelativeLayout callBlock = (RelativeLayout) shiftOptionsview.findViewById(R.id.phoneBlock);
-            callBlock.setOnClickListener(new View.OnClickListener()
-            {
+            callBlock.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     call();
                 }
             });
 
             RelativeLayout checklistBlock = (RelativeLayout) shiftOptionsview.findViewById(R.id.checklistBlock);
-            checklistBlock.setOnClickListener(new View.OnClickListener()
-            {
+            checklistBlock.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
 
                     DriverPreviewChecklistHelper checklistHelper = new DriverPreviewChecklistHelper(getActivity(), checkFor, getChecklist());
                     checklistHelper.inflate();
@@ -73,8 +67,7 @@ public class DriverOnShiftOptionsHelper implements ActivityCompat.OnRequestPermi
             RelativeLayout returnBlock = (RelativeLayout) shiftOptionsview.findViewById(R.id.returnBlock);
             returnBlock.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     amidShiftDialog.dismiss();
                 }
             });
@@ -82,66 +75,53 @@ public class DriverOnShiftOptionsHelper implements ActivityCompat.OnRequestPermi
 
     }
 
-    public void setAmidShiftDialog(MaterialDialog amidShiftDialog)
-    {
+    public void setAmidShiftDialog(MaterialDialog amidShiftDialog) {
         this.amidShiftDialog = amidShiftDialog;
     }
 
-    public MaterialDialog getAmidShiftDialog()
-    {
+    public MaterialDialog getAmidShiftDialog() {
         return this.amidShiftDialog;
     }
 
-    public void setActivity(Activity activity)
-    {
+    public void setActivity(Activity activity) {
         this.activity = activity;
     }
 
-    public Activity getActivity()
-    {
+    public Activity getActivity() {
         return this.activity;
     }
 
-    public ArrayList<String> getChecklist()
-    {
+    public ArrayList<String> getChecklist() {
         return this.checklist;
     }
 
-    public void setChecklist(ArrayList<String> checklist)
-    {
+    public void setChecklist(ArrayList<String> checklist) {
         this.checklist = checklist;
     }
 
-    public String getPersonPhoneNum()
-    {
+    public String getPersonPhoneNum() {
         return this.personPhoneNum;
     }
 
-    public void setPersonPhoneNum(String personPhoneNum)
-    {
+    public void setPersonPhoneNum(String personPhoneNum) {
         this.personPhoneNum = personPhoneNum;
     }
 
-    private void call()
-    {
+    private void call() {
         int CALL_ALLOWED = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE);
-        if (CALL_ALLOWED == PackageManager.PERMISSION_GRANTED)
-        {
+        if (CALL_ALLOWED == PackageManager.PERMISSION_GRANTED) {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
             callIntent.setData(Uri.parse("tel:" + getPersonPhoneNum()));
             getActivity().startActivity(callIntent);
 
-        }
-        else
-        {
+        } else {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, CALL_REQUEST_CODE);
         }
 
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
-    {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         //Toast.makeText(getActivity(), "Press call again.", Toast.LENGTH_SHORT).show();
         call();
     }

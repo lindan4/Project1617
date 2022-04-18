@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.widget.TextView;
 
 import com.flashitdelivery.flash_it_partner.R;
@@ -22,8 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by Lindan on 2016-08-05.
  */
-public class ProfileActivity extends AppCompatActivity
-{
+public class ProfileActivity extends AppCompatActivity {
 
     final private float MAX_VALUE_GRAPH = 12;
     final private float LINE_WIDTH = 3;
@@ -35,8 +35,7 @@ public class ProfileActivity extends AppCompatActivity
     private TextView payChequeAmount;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState)
-    {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
@@ -49,11 +48,9 @@ public class ProfileActivity extends AppCompatActivity
 
     }
 
-    public ArrayList<Entry> createEntryData(ArrayList<Float> plotEntry)
-    {
+    public ArrayList<Entry> createEntryData(ArrayList<Float> plotEntry) {
         ArrayList<Entry> entryData = new ArrayList<Entry>();
-        for (int j = 0; j < plotEntry.size(); j = j + 1)
-        {
+        for (int j = 0; j < plotEntry.size(); j = j + 1) {
             entryData.add(new Entry(j + 1, plotEntry.get(j)));
 
         }
@@ -61,14 +58,12 @@ public class ProfileActivity extends AppCompatActivity
         return entryData;
     }
 
-    private void setUpStatsChart(LineChart lineChart)
-    {
+    private void setUpStatsChart(LineChart lineChart) {
         lineChart.setBorderColor(getResources().getColor(R.color.flashItPartner_purple));
 
         ArrayList<Float> data = new ArrayList<Float>();
-        for (int i = 1; i <= 12; i = i + 1)
-        {
-            data.add((float )(i * i));
+        for (int i = 1; i <= 12; i = i + 1) {
+            data.add((float) (i * i));
         }
         ArrayList<Entry> dataEntry = createEntryData(data);
         LineDataSet dataEntrySet = new LineDataSet(dataEntry, "");
@@ -115,8 +110,7 @@ public class ProfileActivity extends AppCompatActivity
 
     }
 
-    private ArrayList<String> getMonthsOfYear()
-    {
+    private ArrayList<String> getMonthsOfYear() {
         ArrayList<String> months = new ArrayList<String>();
         months.add("Jan");
         months.add("Feb");
